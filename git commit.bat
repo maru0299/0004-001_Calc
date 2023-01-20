@@ -7,3 +7,4 @@ set /p comment="comment："
 git add .
 git commit . -m %comment%
 pause
+exit /b 0
