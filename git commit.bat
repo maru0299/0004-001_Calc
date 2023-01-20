@@ -1,8 +1,9 @@
-@rem 文字コード Shift-JIS -> UTF-8 変更
 @echo off
+
+@rem 文字コード Shift-JIS to UTF-8 変更
 chcp 65001
 
 set /p comment="comment："
-echo %comment%
-git add .
-git commit . -m %comment%
+git add . && ^
+git commit . -m %comment% && ^
+pause
