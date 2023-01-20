@@ -4,6 +4,6 @@
 chcp 65001
 
 set /p comment="comment："
-git add . && ^
-git commit . -m %comment% && ^
+git add .
+git commit . -m %comment%
 pause
