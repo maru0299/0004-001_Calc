@@ -47,6 +47,7 @@
             this.textBox_result = new System.Windows.Forms.TextBox();
             this.textBox_formula = new System.Windows.Forms.TextBox();
             this.button_back = new System.Windows.Forms.Button();
+            this.textBox_debug = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button_4
@@ -236,11 +237,20 @@
             this.button_back.UseVisualStyleBackColor = true;
             this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
+            // textBox_debug
+            // 
+            this.textBox_debug.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.textBox_debug.Location = new System.Drawing.Point(412, 345);
+            this.textBox_debug.Name = "textBox_debug";
+            this.textBox_debug.Size = new System.Drawing.Size(249, 34);
+            this.textBox_debug.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox_debug);
             this.Controls.Add(this.button_0);
             this.Controls.Add(this.button_1);
             this.Controls.Add(this.button_2);
@@ -263,6 +273,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,6 +300,7 @@
         private System.Windows.Forms.TextBox textBox_result;
         private System.Windows.Forms.TextBox textBox_formula;
         private System.Windows.Forms.Button button_back;
+        private System.Windows.Forms.TextBox textBox_debug;
     }
 }
 
