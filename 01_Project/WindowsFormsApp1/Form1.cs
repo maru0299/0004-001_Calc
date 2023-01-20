@@ -15,7 +15,9 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
+
         private void button_1_Click(object sender, EventArgs e)
         {
             inpuformula("1");// 入力処理を行う関数を呼ぶ
@@ -124,6 +126,58 @@ namespace WindowsFormsApp1
             }
 
             textBox_formula.AppendText(e.KeyChar.ToString());
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                // 数字とバックスペース以外は処理しない
+                e.Handled = true;
+            }
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                case Keys.NumPad1:
+                    this.button_1.Focus();
+                    break;
+                case Keys.D2:
+                case Keys.NumPad2:
+                    this.button_2.Focus();
+                    break;
+                case Keys.D3:
+                case Keys.NumPad3:
+                    this.button_3.Focus();
+                    break;
+                case Keys.D4:
+                case Keys.NumPad4:
+                    this.button_4.Focus();
+                    break;
+                case Keys.D5:
+                case Keys.NumPad5:
+                    this.button_1.Focus();
+                    break;
+                case Keys.D6:
+                case Keys.NumPad6:
+                    this.button_6.Focus();
+                    break;
+                case Keys.D7:
+                case Keys.NumPad7:
+                    this.button_7.Focus();
+                    break;
+                case Keys.D8:
+                case Keys.NumPad8:
+                    this.button_8.Focus();
+                    break;
+                case Keys.D9:
+                case Keys.NumPad9:
+                    this.button_9.Focus();
+                    break;
+                case Keys.D0:
+                case Keys.NumPad0:
+                    this.button_0.Focus();
+                    break;
+            }
         }
     }
 }
