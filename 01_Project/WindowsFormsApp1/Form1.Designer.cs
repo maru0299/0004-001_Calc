@@ -271,7 +271,7 @@
             this.Controls.Add(this.button_waru);
             this.Controls.Add(this.button_kakeru);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Calc";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
