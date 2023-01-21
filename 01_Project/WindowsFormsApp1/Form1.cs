@@ -179,6 +179,8 @@ namespace WindowsFormsApp1
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
+
+
             // 許可文字以外の時は、イベントをキャンセルする
             if (!AllowedChar.Contains(e.KeyChar))
             {
@@ -186,91 +188,94 @@ namespace WindowsFormsApp1
             }
 
             // キーボード入力：文字キー
-            if (!textBox_formula.Focused)
+            switch (e.KeyChar)
             {
-                switch (e.KeyChar)
-                {
-                    case '1':
-                        this.button_1.Focus();
-                        this.button_1.PerformClick();
-                        break;
-                    case '2':
-                        this.button_2.Focus();
-                        this.button_2.PerformClick();
-                        break;
-                    case '3':
-                        this.button_3.Focus();
-                        this.button_3.PerformClick();
-                        break;
-                    case '4':
-                        this.button_4.Focus();
-                        this.button_4.PerformClick();
-                        break;
-                    case '5':
-                        this.button_5.Focus();
-                        this.button_5.PerformClick();
-                        break;
-                    case '6':
-                        this.button_6.Focus();
-                        this.button_6.PerformClick();
-                        break;
-                    case '7':
-                        this.button_7.Focus();
-                        this.button_7.PerformClick();
-                        break;
-                    case '8':
-                        this.button_8.Focus();
-                        this.button_8.PerformClick();
-                        break;
-                    case '9':
-                        this.button_9.Focus();
-                        this.button_9.PerformClick();
-                        break;
-                    case '0':
-                        this.button_0.Focus();
-                        this.button_0.PerformClick();
-                        break;
-                    case '+':
-                        this.button_tasu.Focus();
-                        this.button_tasu.PerformClick();
-                        break;
-                    case '-':
-                        this.button_hiku.Focus();
-                        this.button_hiku.PerformClick();
-                        break;
-                    case '/':
-                        this.button_waru.Focus();
-                        this.button_waru.PerformClick();
-                        break;
-                    case '*':
-                        this.button_kakeru.Focus();
-                        this.button_kakeru.PerformClick();
-                        break;
-                    case '.':
-                        this.button_kakeru.Focus();
-                        this.button_kakeru.PerformClick();
-                        break;
-                    case '=':
-                        this.button_equal.Focus();
-                        this.button_equal.PerformClick();
-                        break;
-                }
+                case '1':
+                    this.button_1.Focus();
+                    this.button_1.PerformClick();
+                    break;
+                case '2':
+                    this.button_2.Focus();
+                    this.button_2.PerformClick();
+                    break;
+                case '3':
+                    this.button_3.Focus();
+                    this.button_3.PerformClick();
+                    break;
+                case '4':
+                    this.button_4.Focus();
+                    this.button_4.PerformClick();
+                    break;
+                case '5':
+                    this.button_5.Focus();
+                    this.button_5.PerformClick();
+                    break;
+                case '6':
+                    this.button_6.Focus();
+                    this.button_6.PerformClick();
+                    break;
+                case '7':
+                    this.button_7.Focus();
+                    this.button_7.PerformClick();
+                    break;
+                case '8':
+                    this.button_8.Focus();
+                    this.button_8.PerformClick();
+                    break;
+                case '9':
+                    this.button_9.Focus();
+                    this.button_9.PerformClick();
+                    break;
+                case '0':
+                    this.button_0.Focus();
+                    this.button_0.PerformClick();
+                    break;
+                case '+':
+                    this.button_tasu.Focus();
+                    this.button_tasu.PerformClick();
+                    break;
+                case '-':
+                    this.button_hiku.Focus();
+                    this.button_hiku.PerformClick();
+                    break;
+                case '/':
+                    this.button_waru.Focus();
+                    this.button_waru.PerformClick();
+                    break;
+                case '*':
+                    this.button_kakeru.Focus();
+                    this.button_kakeru.PerformClick();
+                    break;
+                case '.':
+                    this.button_kakeru.Focus();
+                    this.button_kakeru.PerformClick();
+                    this.Focus();
+                    break;
+                case '=':
+                    this.button_equal.Focus();
+                    this.button_equal.PerformClick();
+                    break;
             }
         }
 
         // キーボード入力：特殊キー
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!textBox_formula.Focused)
+            // デバッグ用
+            textBox_debug.Text = e.KeyCode.ToString();
+
+            switch (e.KeyCode)
             {
-                switch (e.KeyCode)
-                {
-                    // BackSpace
-                    case Keys.Back:
-                        this.button_back.Focus();
-                        this.button_back.PerformClick();
-                        break;
-                }
+                // BackSpace
+                case Keys.Back:
+                    this.button_back.Focus();
+                    this.button_back.PerformClick();
+                    break;
+                // Enterキー
+                case Keys.Enter:
+                    this.button_equal.Focus();
+                    this.button_equal.PerformClick();
+                    break;
             }
         }
     }

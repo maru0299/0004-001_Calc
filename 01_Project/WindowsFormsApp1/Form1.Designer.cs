@@ -225,6 +225,7 @@
             this.textBox_formula.Font = new System.Drawing.Font("MS UI Gothic", 20F);
             this.textBox_formula.Location = new System.Drawing.Point(57, 57);
             this.textBox_formula.Name = "textBox_formula";
+            this.textBox_formula.ReadOnly = true;
             this.textBox_formula.Size = new System.Drawing.Size(249, 34);
             this.textBox_formula.TabIndex = 2;
             // 
