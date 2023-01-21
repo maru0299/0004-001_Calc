@@ -37,6 +37,12 @@ namespace WindowsFormsApp1
             }
         }
 
+        // 式のクリア
+        private void clear_formula()
+        {
+            textBox_formula.ResetText();
+        }
+
         // 式入力
         private void inputformula(string str)
         {
@@ -130,7 +136,7 @@ namespace WindowsFormsApp1
 
         private void button_equal_Click(object sender, EventArgs e)
         {
-            calc();
+            calc();// 計算関数を呼ぶ
         }
 
         private void button_dot_Click(object sender, EventArgs e)
@@ -165,7 +171,7 @@ namespace WindowsFormsApp1
 
         private void button_C_Click(object sender, EventArgs e)
         {
-            textBox_formula.ResetText();
+            clear_formula();
         }
 
 
