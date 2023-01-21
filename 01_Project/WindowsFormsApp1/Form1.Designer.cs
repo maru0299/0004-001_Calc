@@ -48,6 +48,7 @@
             this.textBox_formula = new System.Windows.Forms.TextBox();
             this.button_back = new System.Windows.Forms.Button();
             this.textBox_debug = new System.Windows.Forms.TextBox();
+            this.button_C = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_4
@@ -245,11 +246,22 @@
             this.textBox_debug.Size = new System.Drawing.Size(249, 34);
             this.textBox_debug.TabIndex = 3;
             // 
+            // button_C
+            // 
+            this.button_C.Location = new System.Drawing.Point(227, 110);
+            this.button_C.Name = "button_C";
+            this.button_C.Size = new System.Drawing.Size(79, 49);
+            this.button_C.TabIndex = 4;
+            this.button_C.Text = "C";
+            this.button_C.UseVisualStyleBackColor = true;
+            this.button_C.Click += new System.EventHandler(this.button_C_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_C);
             this.Controls.Add(this.textBox_debug);
             this.Controls.Add(this.button_0);
             this.Controls.Add(this.button_1);
@@ -301,6 +313,7 @@
         private System.Windows.Forms.TextBox textBox_formula;
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.TextBox textBox_debug;
+        private System.Windows.Forms.Button button_C;
     }
 }
 

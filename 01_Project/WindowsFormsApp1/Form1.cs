@@ -163,6 +163,11 @@ namespace WindowsFormsApp1
             backspace();
         }
 
+        private void button_C_Click(object sender, EventArgs e)
+        {
+            textBox_formula.ResetText();
+        }
+
 
         //// イベントハンドラ ////
 
