@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//追加
+
 
 namespace WindowsFormsApp1
 {
@@ -20,9 +23,9 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            this.KeyPreview = true;
             AllowedChar.AddRange(AllowedNum);
             AllowedChar.AddRange(AllowedChar);
+            this.KeyPreview = true;
         }
 
         //// 関数 ////
@@ -179,13 +182,13 @@ namespace WindowsFormsApp1
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-
             // 許可文字以外の時は、イベントをキャンセルする
             if (!AllowedChar.Contains(e.KeyChar))
             {
                 e.Handled = true;
             }
+
+            textBox_debug.Text = e.KeyChar.ToString();
 
             // キーボード入力：文字キー
             switch (e.KeyChar)
@@ -255,6 +258,11 @@ namespace WindowsFormsApp1
                     this.button_equal.Focus();
                     this.button_equal.PerformClick();
                     break;
+                case (char)Keys.Enter:
+                    this.button_equal.Focus();
+                    this.button_equal.PerformClick();
+                    e.Handled = true;
+                    break;
             }
         }
 
@@ -262,7 +270,7 @@ namespace WindowsFormsApp1
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             // デバッグ用
-            textBox_debug.Text = e.KeyCode.ToString();
+            //textBox_debug.Text = e.KeyCode.ToString();
 
             switch (e.KeyCode)
             {
@@ -271,12 +279,22 @@ namespace WindowsFormsApp1
                     this.button_back.Focus();
                     this.button_back.PerformClick();
                     break;
-                // Enterキー
-                case Keys.Enter:
-                    this.button_equal.Focus();
-                    this.button_equal.PerformClick();
-                    break;
             }
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            //Returnキーが押されているか調べる
+            if ((keyData & Keys.KeyCode) == Keys.Return)
+            {
+                //Enterキー
+                this.button_equal.Focus();
+                this.button_equal.PerformClick();
+                //本来の処理はさせない
+                return true;
+            }
+
+            return base.ProcessDialogKey(keyData);
         }
     }
 }
