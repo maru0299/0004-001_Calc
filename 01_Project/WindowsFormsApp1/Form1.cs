@@ -66,10 +66,15 @@ namespace WindowsFormsApp1
         // 式入力
         private void inputformula(char key)
         {
-            // 式が空白ならそのまま入力
+            // 式が空白のとき
             if(textBox_formula.Text.Length == 0)
             {
-                textBox_formula.AppendText(key.ToString());
+                // 多重入力禁止文字でなければキー入力
+                if (!DenyDoubleInput.Contains(key))
+                {
+                    textBox_formula.AppendText(key.ToString());
+                }
+                // リターン
                 return;
             }
 
@@ -101,7 +106,7 @@ namespace WindowsFormsApp1
         // 式計算
         private void calc()
         {
-            // エラー処理 何も入力されていないときは処理せずreturn
+            // エラー処理 何も入力されていないときは何も処理せずreturn
             if (textBox_formula.TextLength == 0)
             {
                 return;
