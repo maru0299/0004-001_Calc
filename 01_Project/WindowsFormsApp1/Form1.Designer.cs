@@ -49,6 +49,8 @@
             this.button_back = new System.Windows.Forms.Button();
             this.textBox_debug = new System.Windows.Forms.TextBox();
             this.button_C = new System.Windows.Forms.Button();
+            this.button_kakko2 = new System.Windows.Forms.Button();
+            this.button_kakko1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_4
@@ -257,12 +259,34 @@
             this.button_C.UseVisualStyleBackColor = true;
             this.button_C.Click += new System.EventHandler(this.button_C_Click);
             // 
+            // button_kakko2
+            // 
+            this.button_kakko2.Location = new System.Drawing.Point(142, 110);
+            this.button_kakko2.Name = "button_kakko2";
+            this.button_kakko2.Size = new System.Drawing.Size(79, 49);
+            this.button_kakko2.TabIndex = 4;
+            this.button_kakko2.Text = ")";
+            this.button_kakko2.UseVisualStyleBackColor = true;
+            this.button_kakko2.Click += new System.EventHandler(this.button_kakko2_Click);
+            // 
+            // button_kakko1
+            // 
+            this.button_kakko1.Location = new System.Drawing.Point(57, 110);
+            this.button_kakko1.Name = "button_kakko1";
+            this.button_kakko1.Size = new System.Drawing.Size(79, 49);
+            this.button_kakko1.TabIndex = 4;
+            this.button_kakko1.Text = "(";
+            this.button_kakko1.UseVisualStyleBackColor = true;
+            this.button_kakko1.Click += new System.EventHandler(this.button_kakko1_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.button_equal;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_kakko1);
+            this.Controls.Add(this.button_kakko2);
             this.Controls.Add(this.button_C);
             this.Controls.Add(this.textBox_debug);
             this.Controls.Add(this.button_0);
@@ -317,6 +341,8 @@
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.TextBox textBox_debug;
         private System.Windows.Forms.Button button_C;
+        private System.Windows.Forms.Button button_kakko2;
+        private System.Windows.Forms.Button button_kakko1;
     }
 }
 

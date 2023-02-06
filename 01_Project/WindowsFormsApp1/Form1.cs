@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //追加
 
@@ -15,16 +16,32 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        // キー入力を許可する文字
+        // キー入力を許可する数字のリスト
         List<char> AllowedNum = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^' };
+        // キー入力を許可する記号のリスト
+        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')'};
+        // 二重入力を許可する記号のリスト
+        List<char> AllowedDoubleInputSynbol = new List<char>() { '(', ')' };
+        // 入力を許可する文字のリスト
         List<char> AllowedChar = new List<char>();
+        // 二重入力を禁止する文字のリスト
+        List<char> DenyDoubleInput = new List<char>();
 
         public Form1()
         {
             InitializeComponent();
+
+            // 入力を許可する文字の定義
             AllowedChar.AddRange(AllowedNum);
             AllowedChar.AddRange(AllowedChar);
+
+            // 二重入力を禁止する文字の定義
+            DenyDoubleInput.AddRange(AllowedSynbol);
+            foreach (char i in AllowedDoubleInputSynbol)
+            {
+                DenyDoubleInput.Remove(i);
+            }
+
             this.KeyPreview = true;
         }
 
@@ -47,41 +64,83 @@ namespace WindowsFormsApp1
         }
 
         // 式入力
-        private void inputformula(string str)
+        private void inputformula(char key)
         {
-            textBox_formula.AppendText(str);
+            // 式が空白ならそのまま入力
+            if(textBox_formula.Text.Length == 0)
+            {
+                textBox_formula.AppendText(key.ToString());
+                return;
+            }
+
+            // 式の最後の文字を取り出す
+            char cursor_char = char.Parse(textBox_formula.Text.Substring(textBox_formula.Text.Length-1));
+            bool key_flag_synbol = false;
+            bool cursor_flag_synbol = false;
+
+            // 入力キーの判別
+            // 演算子？
+            if (DenyDoubleInput.Contains(key))
+            {
+                key_flag_synbol = true;
+            }
+
+            // カーソル位置のcharの判別
+            // 演算子？
+            if (DenyDoubleInput.Contains(cursor_char))
+            {
+                cursor_flag_synbol = true;
+            }
+
+            if(key_flag_synbol != true || cursor_flag_synbol != true)
+            {
+                textBox_formula.AppendText(key.ToString());
+            }
         }
 
         // 式計算
         private void calc()
         {
-            var calc_num = textBox_formula.Text.Split(AllowedSynbol.ToArray());
-            var calc_synbol = textBox_formula.Text.Split(AllowedNum.ToArray());
+            // エラー処理 何も入力されていないときは処理せずreturn
+            if (textBox_formula.TextLength == 0)
+            {
+                return;
+            }
 
+            // 式を要素に分解
+            // 数字
+            var calc_num = textBox_formula.Text.Split(AllowedSynbol.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            // 演算子
+            var calc_synbol = textBox_formula.Text.Split(calc_num, StringSplitOptions.RemoveEmptyEntries);
+            // 式の項数
             int length_num = calc_num.Length;
+            // 演算子の数
             int length_synbol = calc_synbol.Length;
 
-            double result= double.Parse(calc_num[0]);
+            // 解を入れる変数
+            double result = double.Parse(calc_num[0]);
 
-            for (int i = 1; i < length_num; i++)
+            // 計算処理（i+1番目の演算子の処理）
+            for (int i = 0; i < length_num-1; i++)
             {
                 switch (calc_synbol[i])
                 {
                     case "+":
-                        result += double.Parse(calc_num[i]);
+                        result += double.Parse(calc_num[i + 1]);
                         break;
                     case "-":
-                        result -= double.Parse(calc_num[i]);
+                        result -= double.Parse(calc_num[i + 1]);
                         break;
                     case "*":
-                        result *= double.Parse(calc_num[i]);
+                        result *= double.Parse(calc_num[i + 1]);
                         break;
                     case "/":
-                        result /= double.Parse(calc_num[i]);
+                        result /= double.Parse(calc_num[i + 1]);
                         break;
                 }
             }
 
+            // 解をテキストボックスに表示
             textBox_result.Text = result.ToString();
         }
 
@@ -89,52 +148,52 @@ namespace WindowsFormsApp1
 
         private void button_1_Click(object sender, EventArgs e)
         {
-            inputformula("1");// 入力処理を行う関数を呼ぶ
+            inputformula('1');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_2_Click(object sender, EventArgs e)
         {
-            inputformula("2");// 入力処理を行う関数を呼ぶ
+            inputformula('2');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_3_Click(object sender, EventArgs e)
         {
-            inputformula("3");// 入力処理を行う関数を呼ぶ
+            inputformula('3');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_4_Click(object sender, EventArgs e)
         {
-            inputformula("4");// 入力処理を行う関数を呼ぶ
+            inputformula('4');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_5_Click(object sender, EventArgs e)
         {
-            inputformula("5");// 入力処理を行う関数を呼ぶ
+            inputformula('5');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_6_Click(object sender, EventArgs e)
         {
-            inputformula("6");// 入力処理を行う関数を呼ぶ
+            inputformula('6');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_7_Click(object sender, EventArgs e)
         {
-            inputformula("7");// 入力処理を行う関数を呼ぶ
+            inputformula('7');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_8_Click(object sender, EventArgs e)
         {
-            inputformula("8");// 入力処理を行う関数を呼ぶ
+            inputformula('8');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_9_Click(object sender, EventArgs e)
         {
-            inputformula("9");// 入力処理を行う関数を呼ぶ
+            inputformula('9');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_0_Click(object sender, EventArgs e)
         {
-            inputformula("0");// 入力処理を行う関数を呼ぶ
+            inputformula('0');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_equal_Click(object sender, EventArgs e)
@@ -144,27 +203,27 @@ namespace WindowsFormsApp1
 
         private void button_dot_Click(object sender, EventArgs e)
         {
-            inputformula(".");// 入力処理を行う関数を呼ぶ
+            inputformula('.');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_tasu_Click(object sender, EventArgs e)
         {
-            inputformula("+");// 入力処理を行う関数を呼ぶ
+            inputformula('+');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_hiku_Click(object sender, EventArgs e)
         {
-            inputformula("-");// 入力処理を行う関数を呼ぶ
+            inputformula('-');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_kakeru_Click(object sender, EventArgs e)
         {
-            inputformula("*");// 入力処理を行う関数を呼ぶ
+            inputformula('*');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_waru_Click(object sender, EventArgs e)
         {
-            inputformula("/");// 入力処理を行う関数を呼ぶ
+            inputformula('/');// 入力処理を行う関数を呼ぶ
         }
 
         private void button_back_Click(object sender, EventArgs e)
@@ -177,12 +236,23 @@ namespace WindowsFormsApp1
             clear_formula();
         }
 
+        private void button_kakko1_Click(object sender, EventArgs e)
+        {
+            inputformula('(');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_kakko2_Click(object sender, EventArgs e)
+        {
+            inputformula(')');// 入力処理を行う関数を呼ぶ
+        }
+
 
         //// イベントハンドラ ////
 
+        // 文字・数字キーの処理
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 許可文字以外の時は、イベントをキャンセルする
+            // 許可したキー以外の時は、イベントをキャンセルする
             if (!AllowedChar.Contains(e.KeyChar))
             {
                 e.Handled = true;
@@ -190,7 +260,7 @@ namespace WindowsFormsApp1
 
             textBox_debug.Text = e.KeyChar.ToString();
 
-            // キーボード入力：文字キー
+            // キーボード入力：文字・数字キー
             switch (e.KeyChar)
             {
                 case '1':
@@ -250,23 +320,25 @@ namespace WindowsFormsApp1
                     this.button_kakeru.PerformClick();
                     break;
                 case '.':
-                    this.button_kakeru.Focus();
-                    this.button_kakeru.PerformClick();
-                    this.Focus();
+                    this.button_dot.Focus();
+                    this.button_dot.PerformClick();
                     break;
                 case '=':
                     this.button_equal.Focus();
                     this.button_equal.PerformClick();
                     break;
-                case (char)Keys.Enter:
-                    this.button_equal.Focus();
-                    this.button_equal.PerformClick();
-                    e.Handled = true;
+                case '(':
+                    this.button_kakko1.Focus();
+                    this.button_kakko1.PerformClick();
+                    break;
+                case ')':
+                    this.button_kakko2.Focus();
+                    this.button_kakko2.PerformClick();
                     break;
             }
         }
 
-        // キーボード入力：特殊キー
+        // 特殊キーの処理
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             // デバッグ用
@@ -276,12 +348,14 @@ namespace WindowsFormsApp1
             {
                 // BackSpace
                 case Keys.Back:
+                case Keys.Delete:
                     this.button_back.Focus();
                     this.button_back.PerformClick();
                     break;
             }
         }
 
+        // エンターキーの処理
         protected override bool ProcessDialogKey(Keys keyData)
         {
             //Returnキーが押されているか調べる
