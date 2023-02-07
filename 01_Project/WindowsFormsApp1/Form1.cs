@@ -20,12 +20,8 @@ namespace WindowsFormsApp1
         List<char> AllowedNum = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
         // キー入力を許可する記号のリスト
         List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')'};
-        // 二重入力を許可する記号のリスト
-        List<char> AllowedDoubleInputSynbol = new List<char>() { '(', ')' };
         // 入力を許可する文字のリスト
         List<char> AllowedChar = new List<char>();
-        // 二重入力を禁止する文字のリスト
-        List<char> DenyDoubleInput = new List<char>();
 
         public Form1()
         {
@@ -34,14 +30,6 @@ namespace WindowsFormsApp1
             // 入力を許可する文字の定義
             AllowedChar.AddRange(AllowedNum);
             AllowedChar.AddRange(AllowedChar);
-
-            // 二重入力を禁止する文字の定義
-            DenyDoubleInput.AddRange(AllowedSynbol);
-            foreach (char i in AllowedDoubleInputSynbol)
-            {
-                DenyDoubleInput.Remove(i);
-            }
-
             this.KeyPreview = true;
         }
 
@@ -66,36 +54,7 @@ namespace WindowsFormsApp1
         // 式入力
         private void inputformula(char key)
         {
-            // 式が空白ならそのまま入力
-            if(textBox_formula.Text.Length == 0)
-            {
-                textBox_formula.AppendText(key.ToString());
-                return;
-            }
-
-            // 式の最後の文字を取り出す
-            char cursor_char = char.Parse(textBox_formula.Text.Substring(textBox_formula.Text.Length-1));
-            bool key_flag_synbol = false;
-            bool cursor_flag_synbol = false;
-
-            // 入力キーの判別
-            // 演算子？
-            if (DenyDoubleInput.Contains(key))
-            {
-                key_flag_synbol = true;
-            }
-
-            // カーソル位置のcharの判別
-            // 演算子？
-            if (DenyDoubleInput.Contains(cursor_char))
-            {
-                cursor_flag_synbol = true;
-            }
-
-            if(key_flag_synbol != true || cursor_flag_synbol != true)
-            {
-                textBox_formula.AppendText(key.ToString());
-            }
+            textBox_formula.AppendText(key.ToString());
         }
 
         // 式計算
@@ -143,6 +102,13 @@ namespace WindowsFormsApp1
             // 解をテキストボックスに表示
             textBox_result.Text = result.ToString();
         }
+
+
+
+
+
+
+
 
         //// インターフェース ////
 
@@ -245,6 +211,13 @@ namespace WindowsFormsApp1
         {
             inputformula(')');// 入力処理を行う関数を呼ぶ
         }
+
+
+
+
+
+
+
 
 
         //// イベントハンドラ ////
