@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
         // 式計算
         private void calc()
         {
-            // エラー処理 何も入力されていないときは処理せずreturn
+            // エラー処理 何も入力されていないときは何も処理せずreturn
             if (textBox_formula.TextLength == 0)
             {
                 return;
