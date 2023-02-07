@@ -19,13 +19,9 @@ namespace WindowsFormsApp1
         // キー入力を許可する数字のリスト
         List<char> AllowedNum = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
         // キー入力を許可する記号のリスト
-        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')'};
-        // 二重入力を許可する記号のリスト
-        List<char> AllowedDoubleInputSynbol = new List<char>() { '(', ')' };
+        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')','√'};
         // 入力を許可する文字のリスト
         List<char> AllowedChar = new List<char>();
-        // 二重入力を禁止する文字のリスト
-        List<char> DenyDoubleInput = new List<char>();
 
         public Form1()
         {
@@ -34,14 +30,6 @@ namespace WindowsFormsApp1
             // 入力を許可する文字の定義
             AllowedChar.AddRange(AllowedNum);
             AllowedChar.AddRange(AllowedChar);
-
-            // 二重入力を禁止する文字の定義
-            DenyDoubleInput.AddRange(AllowedSynbol);
-            foreach (char i in AllowedDoubleInputSynbol)
-            {
-                DenyDoubleInput.Remove(i);
-            }
-
             this.KeyPreview = true;
         }
 
@@ -66,49 +54,16 @@ namespace WindowsFormsApp1
         // 式入力
         private void inputformula(char key)
         {
-            // 式が空白のとき
-            if(textBox_formula.Text.Length == 0)
-            {
-                // 多重入力禁止文字でなければキー入力
-                if (!DenyDoubleInput.Contains(key))
-                {
-                    textBox_formula.AppendText(key.ToString());
-                }
-                // リターン
-                return;
-            }
-
-            // 式の最後の文字を取り出す
-            char cursor_char = char.Parse(textBox_formula.Text.Substring(textBox_formula.Text.Length-1));
-            bool key_flag_synbol = false;
-            bool cursor_flag_synbol = false;
-
-            // 入力キーの判別
-            // 演算子？
-            if (DenyDoubleInput.Contains(key))
-            {
-                key_flag_synbol = true;
-            }
-
-            // カーソル位置のcharの判別
-            // 演算子？
-            if (DenyDoubleInput.Contains(cursor_char))
-            {
-                cursor_flag_synbol = true;
-            }
-
-            if(key_flag_synbol != true || cursor_flag_synbol != true)
-            {
-                textBox_formula.AppendText(key.ToString());
-            }
+            textBox_formula.AppendText(key.ToString());
         }
 
         // 式計算
         private void calc()
         {
-            // エラー処理 何も入力されていないときは何も処理せずreturn
+            // エラー処理 式に何も入力されていないときは何も処理せずreturn
             if (textBox_formula.TextLength == 0)
             {
+                textBox_result.ResetText();
                 return;
             }
 
@@ -149,107 +104,9 @@ namespace WindowsFormsApp1
             textBox_result.Text = result.ToString();
         }
 
-        //// インターフェース ////
 
-        private void button_1_Click(object sender, EventArgs e)
-        {
-            inputformula('1');// 入力処理を行う関数を呼ぶ
-        }
 
-        private void button_2_Click(object sender, EventArgs e)
-        {
-            inputformula('2');// 入力処理を行う関数を呼ぶ
-        }
 
-        private void button_3_Click(object sender, EventArgs e)
-        {
-            inputformula('3');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_4_Click(object sender, EventArgs e)
-        {
-            inputformula('4');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_5_Click(object sender, EventArgs e)
-        {
-            inputformula('5');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_6_Click(object sender, EventArgs e)
-        {
-            inputformula('6');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_7_Click(object sender, EventArgs e)
-        {
-            inputformula('7');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_8_Click(object sender, EventArgs e)
-        {
-            inputformula('8');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_9_Click(object sender, EventArgs e)
-        {
-            inputformula('9');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_0_Click(object sender, EventArgs e)
-        {
-            inputformula('0');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_equal_Click(object sender, EventArgs e)
-        {
-            calc();// 計算関数を呼ぶ
-        }
-
-        private void button_dot_Click(object sender, EventArgs e)
-        {
-            inputformula('.');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_tasu_Click(object sender, EventArgs e)
-        {
-            inputformula('+');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_hiku_Click(object sender, EventArgs e)
-        {
-            inputformula('-');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_kakeru_Click(object sender, EventArgs e)
-        {
-            inputformula('*');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_waru_Click(object sender, EventArgs e)
-        {
-            inputformula('/');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_back_Click(object sender, EventArgs e)
-        {
-            backspace();
-        }
-
-        private void button_C_Click(object sender, EventArgs e)
-        {
-            clear_formula();
-        }
-
-        private void button_kakko1_Click(object sender, EventArgs e)
-        {
-            inputformula('(');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_kakko2_Click(object sender, EventArgs e)
-        {
-            inputformula(')');// 入力処理を行う関数を呼ぶ
-        }
 
 
         //// イベントハンドラ ////
@@ -374,6 +231,120 @@ namespace WindowsFormsApp1
             }
 
             return base.ProcessDialogKey(keyData);
+        }
+
+        // 式テキストボックスの内容が変更されたら都度calc関数を実行
+        private void textBox_formula_TextChanged(object sender, EventArgs e)
+        {
+            calc();
+        }
+
+
+
+
+
+
+
+        //// インターフェース ////
+
+        private void button_1_Click(object sender, EventArgs e)
+        {
+            inputformula('1');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_2_Click(object sender, EventArgs e)
+        {
+            inputformula('2');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_3_Click(object sender, EventArgs e)
+        {
+            inputformula('3');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_4_Click(object sender, EventArgs e)
+        {
+            inputformula('4');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_5_Click(object sender, EventArgs e)
+        {
+            inputformula('5');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_6_Click(object sender, EventArgs e)
+        {
+            inputformula('6');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_7_Click(object sender, EventArgs e)
+        {
+            inputformula('7');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_8_Click(object sender, EventArgs e)
+        {
+            inputformula('8');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_9_Click(object sender, EventArgs e)
+        {
+            inputformula('9');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_0_Click(object sender, EventArgs e)
+        {
+            inputformula('0');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_equal_Click(object sender, EventArgs e)
+        {
+            calc();// 計算関数を呼ぶ
+        }
+
+        private void button_dot_Click(object sender, EventArgs e)
+        {
+            inputformula('.');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_tasu_Click(object sender, EventArgs e)
+        {
+            inputformula('+');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_hiku_Click(object sender, EventArgs e)
+        {
+            inputformula('-');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_kakeru_Click(object sender, EventArgs e)
+        {
+            inputformula('*');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_waru_Click(object sender, EventArgs e)
+        {
+            inputformula('/');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            backspace();
+        }
+
+        private void button_C_Click(object sender, EventArgs e)
+        {
+            clear_formula();
+        }
+
+        private void button_kakko1_Click(object sender, EventArgs e)
+        {
+            inputformula('(');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_kakko2_Click(object sender, EventArgs e)
+        {
+            inputformula(')');// 入力処理を行う関数を呼ぶ
         }
     }
 }
