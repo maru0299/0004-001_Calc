@@ -109,118 +109,6 @@ namespace WindowsFormsApp1
 
 
 
-
-
-        //// インターフェース ////
-
-        private void button_1_Click(object sender, EventArgs e)
-        {
-            inputformula('1');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_2_Click(object sender, EventArgs e)
-        {
-            inputformula('2');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_3_Click(object sender, EventArgs e)
-        {
-            inputformula('3');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_4_Click(object sender, EventArgs e)
-        {
-            inputformula('4');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_5_Click(object sender, EventArgs e)
-        {
-            inputformula('5');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_6_Click(object sender, EventArgs e)
-        {
-            inputformula('6');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_7_Click(object sender, EventArgs e)
-        {
-            inputformula('7');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_8_Click(object sender, EventArgs e)
-        {
-            inputformula('8');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_9_Click(object sender, EventArgs e)
-        {
-            inputformula('9');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_0_Click(object sender, EventArgs e)
-        {
-            inputformula('0');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_equal_Click(object sender, EventArgs e)
-        {
-            calc();// 計算関数を呼ぶ
-        }
-
-        private void button_dot_Click(object sender, EventArgs e)
-        {
-            inputformula('.');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_tasu_Click(object sender, EventArgs e)
-        {
-            inputformula('+');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_hiku_Click(object sender, EventArgs e)
-        {
-            inputformula('-');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_kakeru_Click(object sender, EventArgs e)
-        {
-            inputformula('*');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_waru_Click(object sender, EventArgs e)
-        {
-            inputformula('/');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_back_Click(object sender, EventArgs e)
-        {
-            backspace();
-        }
-
-        private void button_C_Click(object sender, EventArgs e)
-        {
-            clear_formula();
-        }
-
-        private void button_kakko1_Click(object sender, EventArgs e)
-        {
-            inputformula('(');// 入力処理を行う関数を呼ぶ
-        }
-
-        private void button_kakko2_Click(object sender, EventArgs e)
-        {
-            inputformula(')');// 入力処理を行う関数を呼ぶ
-        }
-
-
-
-
-
-
-
-
-
         //// イベントハンドラ ////
 
         // 文字・数字キーの処理
@@ -349,6 +237,114 @@ namespace WindowsFormsApp1
         private void textBox_formula_TextChanged(object sender, EventArgs e)
         {
             calc();
+        }
+
+
+
+
+
+
+
+        //// インターフェース ////
+
+        private void button_1_Click(object sender, EventArgs e)
+        {
+            inputformula('1');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_2_Click(object sender, EventArgs e)
+        {
+            inputformula('2');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_3_Click(object sender, EventArgs e)
+        {
+            inputformula('3');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_4_Click(object sender, EventArgs e)
+        {
+            inputformula('4');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_5_Click(object sender, EventArgs e)
+        {
+            inputformula('5');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_6_Click(object sender, EventArgs e)
+        {
+            inputformula('6');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_7_Click(object sender, EventArgs e)
+        {
+            inputformula('7');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_8_Click(object sender, EventArgs e)
+        {
+            inputformula('8');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_9_Click(object sender, EventArgs e)
+        {
+            inputformula('9');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_0_Click(object sender, EventArgs e)
+        {
+            inputformula('0');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_equal_Click(object sender, EventArgs e)
+        {
+            calc();// 計算関数を呼ぶ
+        }
+
+        private void button_dot_Click(object sender, EventArgs e)
+        {
+            inputformula('.');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_tasu_Click(object sender, EventArgs e)
+        {
+            inputformula('+');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_hiku_Click(object sender, EventArgs e)
+        {
+            inputformula('-');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_kakeru_Click(object sender, EventArgs e)
+        {
+            inputformula('*');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_waru_Click(object sender, EventArgs e)
+        {
+            inputformula('/');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            backspace();
+        }
+
+        private void button_C_Click(object sender, EventArgs e)
+        {
+            clear_formula();
+        }
+
+        private void button_kakko1_Click(object sender, EventArgs e)
+        {
+            inputformula('(');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_kakko2_Click(object sender, EventArgs e)
+        {
+            inputformula(')');// 入力処理を行う関数を呼ぶ
         }
     }
 }
