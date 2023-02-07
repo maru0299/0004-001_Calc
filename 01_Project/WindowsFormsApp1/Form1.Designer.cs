@@ -230,6 +230,7 @@
             this.textBox_formula.ReadOnly = true;
             this.textBox_formula.Size = new System.Drawing.Size(249, 34);
             this.textBox_formula.TabIndex = 2;
+            this.textBox_formula.TextChanged += new System.EventHandler(this.textBox_formula_TextChanged);
             // 
             // button_back
             // 

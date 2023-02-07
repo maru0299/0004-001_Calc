@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         // キー入力を許可する数字のリスト
         List<char> AllowedNum = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
         // キー入力を許可する記号のリスト
-        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')'};
+        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')','√'};
         // 入力を許可する文字のリスト
         List<char> AllowedChar = new List<char>();
 
@@ -60,9 +60,10 @@ namespace WindowsFormsApp1
         // 式計算
         private void calc()
         {
-            // エラー処理 何も入力されていないときは何も処理せずreturn
+            // エラー処理 式に何も入力されていないときは何も処理せずreturn
             if (textBox_formula.TextLength == 0)
             {
+                textBox_result.ResetText();
                 return;
             }
 
@@ -342,6 +343,12 @@ namespace WindowsFormsApp1
             }
 
             return base.ProcessDialogKey(keyData);
+        }
+
+        // 式テキストボックスの内容が変更されたら都度calc関数を実行
+        private void textBox_formula_TextChanged(object sender, EventArgs e)
+        {
+            calc();
         }
     }
 }
