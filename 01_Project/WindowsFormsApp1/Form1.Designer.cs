@@ -47,15 +47,16 @@
             this.textBox_result = new System.Windows.Forms.TextBox();
             this.textBox_formula = new System.Windows.Forms.TextBox();
             this.button_back = new System.Windows.Forms.Button();
-            this.textBox_debug = new System.Windows.Forms.TextBox();
+            this.textBox_debug_key = new System.Windows.Forms.TextBox();
             this.button_C = new System.Windows.Forms.Button();
             this.button_kakko2 = new System.Windows.Forms.Button();
             this.button_kakko1 = new System.Windows.Forms.Button();
+            this.textBox_debug_caret = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button_4
             // 
-            this.button_4.Location = new System.Drawing.Point(57, 220);
+            this.button_4.Location = new System.Drawing.Point(42, 243);
             this.button_4.Name = "button_4";
             this.button_4.Size = new System.Drawing.Size(79, 49);
             this.button_4.TabIndex = 0;
@@ -65,7 +66,7 @@
             // 
             // button_5
             // 
-            this.button_5.Location = new System.Drawing.Point(142, 220);
+            this.button_5.Location = new System.Drawing.Point(127, 243);
             this.button_5.Name = "button_5";
             this.button_5.Size = new System.Drawing.Size(79, 49);
             this.button_5.TabIndex = 0;
@@ -75,7 +76,7 @@
             // 
             // button_6
             // 
-            this.button_6.Location = new System.Drawing.Point(227, 220);
+            this.button_6.Location = new System.Drawing.Point(212, 243);
             this.button_6.Name = "button_6";
             this.button_6.Size = new System.Drawing.Size(79, 49);
             this.button_6.TabIndex = 0;
@@ -85,7 +86,7 @@
             // 
             // button_3
             // 
-            this.button_3.Location = new System.Drawing.Point(227, 275);
+            this.button_3.Location = new System.Drawing.Point(212, 298);
             this.button_3.Name = "button_3";
             this.button_3.Size = new System.Drawing.Size(79, 49);
             this.button_3.TabIndex = 0;
@@ -95,7 +96,7 @@
             // 
             // button_dot
             // 
-            this.button_dot.Location = new System.Drawing.Point(227, 330);
+            this.button_dot.Location = new System.Drawing.Point(212, 353);
             this.button_dot.Name = "button_dot";
             this.button_dot.Size = new System.Drawing.Size(79, 49);
             this.button_dot.TabIndex = 0;
@@ -105,7 +106,7 @@
             // 
             // button_equal
             // 
-            this.button_equal.Location = new System.Drawing.Point(312, 330);
+            this.button_equal.Location = new System.Drawing.Point(297, 353);
             this.button_equal.Name = "button_equal";
             this.button_equal.Size = new System.Drawing.Size(79, 49);
             this.button_equal.TabIndex = 0;
@@ -115,7 +116,7 @@
             // 
             // button_2
             // 
-            this.button_2.Location = new System.Drawing.Point(142, 275);
+            this.button_2.Location = new System.Drawing.Point(127, 298);
             this.button_2.Name = "button_2";
             this.button_2.Size = new System.Drawing.Size(79, 49);
             this.button_2.TabIndex = 0;
@@ -125,7 +126,7 @@
             // 
             // button_1
             // 
-            this.button_1.Location = new System.Drawing.Point(57, 275);
+            this.button_1.Location = new System.Drawing.Point(42, 298);
             this.button_1.Name = "button_1";
             this.button_1.Size = new System.Drawing.Size(79, 49);
             this.button_1.TabIndex = 0;
@@ -135,7 +136,7 @@
             // 
             // button_0
             // 
-            this.button_0.Location = new System.Drawing.Point(142, 330);
+            this.button_0.Location = new System.Drawing.Point(127, 353);
             this.button_0.Name = "button_0";
             this.button_0.Size = new System.Drawing.Size(79, 49);
             this.button_0.TabIndex = 0;
@@ -145,7 +146,7 @@
             // 
             // button_7
             // 
-            this.button_7.Location = new System.Drawing.Point(57, 165);
+            this.button_7.Location = new System.Drawing.Point(42, 188);
             this.button_7.Name = "button_7";
             this.button_7.Size = new System.Drawing.Size(79, 49);
             this.button_7.TabIndex = 0;
@@ -155,7 +156,7 @@
             // 
             // button_8
             // 
-            this.button_8.Location = new System.Drawing.Point(142, 165);
+            this.button_8.Location = new System.Drawing.Point(127, 188);
             this.button_8.Name = "button_8";
             this.button_8.Size = new System.Drawing.Size(79, 49);
             this.button_8.TabIndex = 0;
@@ -165,7 +166,7 @@
             // 
             // button_9
             // 
-            this.button_9.Location = new System.Drawing.Point(227, 165);
+            this.button_9.Location = new System.Drawing.Point(212, 188);
             this.button_9.Name = "button_9";
             this.button_9.Size = new System.Drawing.Size(79, 49);
             this.button_9.TabIndex = 0;
@@ -175,7 +176,7 @@
             // 
             // button_kakeru
             // 
-            this.button_kakeru.Location = new System.Drawing.Point(312, 165);
+            this.button_kakeru.Location = new System.Drawing.Point(297, 188);
             this.button_kakeru.Name = "button_kakeru";
             this.button_kakeru.Size = new System.Drawing.Size(79, 49);
             this.button_kakeru.TabIndex = 0;
@@ -185,7 +186,7 @@
             // 
             // button_waru
             // 
-            this.button_waru.Location = new System.Drawing.Point(312, 110);
+            this.button_waru.Location = new System.Drawing.Point(297, 133);
             this.button_waru.Name = "button_waru";
             this.button_waru.Size = new System.Drawing.Size(79, 49);
             this.button_waru.TabIndex = 0;
@@ -195,7 +196,7 @@
             // 
             // button_hiku
             // 
-            this.button_hiku.Location = new System.Drawing.Point(312, 220);
+            this.button_hiku.Location = new System.Drawing.Point(297, 243);
             this.button_hiku.Name = "button_hiku";
             this.button_hiku.Size = new System.Drawing.Size(79, 49);
             this.button_hiku.TabIndex = 0;
@@ -205,7 +206,7 @@
             // 
             // button_tasu
             // 
-            this.button_tasu.Location = new System.Drawing.Point(312, 275);
+            this.button_tasu.Location = new System.Drawing.Point(297, 298);
             this.button_tasu.Name = "button_tasu";
             this.button_tasu.Size = new System.Drawing.Size(79, 49);
             this.button_tasu.TabIndex = 0;
@@ -216,16 +217,16 @@
             // textBox_result
             // 
             this.textBox_result.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_result.Location = new System.Drawing.Point(412, 57);
-            this.textBox_result.Multiline = true;
+            this.textBox_result.Location = new System.Drawing.Point(42, 35);
             this.textBox_result.Name = "textBox_result";
-            this.textBox_result.Size = new System.Drawing.Size(249, 269);
+            this.textBox_result.ReadOnly = true;
+            this.textBox_result.Size = new System.Drawing.Size(334, 34);
             this.textBox_result.TabIndex = 1;
             // 
             // textBox_formula
             // 
             this.textBox_formula.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_formula.Location = new System.Drawing.Point(57, 57);
+            this.textBox_formula.Location = new System.Drawing.Point(42, 80);
             this.textBox_formula.Name = "textBox_formula";
             this.textBox_formula.ReadOnly = true;
             this.textBox_formula.Size = new System.Drawing.Size(249, 34);
@@ -234,7 +235,7 @@
             // 
             // button_back
             // 
-            this.button_back.Location = new System.Drawing.Point(312, 55);
+            this.button_back.Location = new System.Drawing.Point(297, 78);
             this.button_back.Name = "button_back";
             this.button_back.Size = new System.Drawing.Size(79, 49);
             this.button_back.TabIndex = 0;
@@ -242,17 +243,17 @@
             this.button_back.UseVisualStyleBackColor = true;
             this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
-            // textBox_debug
+            // textBox_debug_key
             // 
-            this.textBox_debug.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_debug.Location = new System.Drawing.Point(412, 345);
-            this.textBox_debug.Name = "textBox_debug";
-            this.textBox_debug.Size = new System.Drawing.Size(249, 34);
-            this.textBox_debug.TabIndex = 3;
+            this.textBox_debug_key.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.textBox_debug_key.Location = new System.Drawing.Point(408, 368);
+            this.textBox_debug_key.Name = "textBox_debug_key";
+            this.textBox_debug_key.Size = new System.Drawing.Size(249, 34);
+            this.textBox_debug_key.TabIndex = 3;
             // 
             // button_C
             // 
-            this.button_C.Location = new System.Drawing.Point(227, 110);
+            this.button_C.Location = new System.Drawing.Point(212, 133);
             this.button_C.Name = "button_C";
             this.button_C.Size = new System.Drawing.Size(79, 49);
             this.button_C.TabIndex = 4;
@@ -262,7 +263,7 @@
             // 
             // button_kakko2
             // 
-            this.button_kakko2.Location = new System.Drawing.Point(142, 110);
+            this.button_kakko2.Location = new System.Drawing.Point(127, 133);
             this.button_kakko2.Name = "button_kakko2";
             this.button_kakko2.Size = new System.Drawing.Size(79, 49);
             this.button_kakko2.TabIndex = 4;
@@ -272,7 +273,7 @@
             // 
             // button_kakko1
             // 
-            this.button_kakko1.Location = new System.Drawing.Point(57, 110);
+            this.button_kakko1.Location = new System.Drawing.Point(42, 133);
             this.button_kakko1.Name = "button_kakko1";
             this.button_kakko1.Size = new System.Drawing.Size(79, 49);
             this.button_kakko1.TabIndex = 4;
@@ -280,16 +281,25 @@
             this.button_kakko1.UseVisualStyleBackColor = true;
             this.button_kakko1.Click += new System.EventHandler(this.button_kakko1_Click);
             // 
+            // textBox_debug_caret
+            // 
+            this.textBox_debug_caret.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.textBox_debug_caret.Location = new System.Drawing.Point(408, 328);
+            this.textBox_debug_caret.Name = "textBox_debug_caret";
+            this.textBox_debug_caret.Size = new System.Drawing.Size(249, 34);
+            this.textBox_debug_caret.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AcceptButton = this.button_equal;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox_debug_caret);
             this.Controls.Add(this.button_kakko1);
             this.Controls.Add(this.button_kakko2);
             this.Controls.Add(this.button_C);
-            this.Controls.Add(this.textBox_debug);
+            this.Controls.Add(this.textBox_debug_key);
             this.Controls.Add(this.button_0);
             this.Controls.Add(this.button_1);
             this.Controls.Add(this.button_2);
@@ -340,10 +350,11 @@
         private System.Windows.Forms.TextBox textBox_result;
         private System.Windows.Forms.TextBox textBox_formula;
         private System.Windows.Forms.Button button_back;
-        private System.Windows.Forms.TextBox textBox_debug;
+        private System.Windows.Forms.TextBox textBox_debug_key;
         private System.Windows.Forms.Button button_C;
         private System.Windows.Forms.Button button_kakko2;
         private System.Windows.Forms.Button button_kakko1;
+        private System.Windows.Forms.TextBox textBox_debug_caret;
     }
 }
 

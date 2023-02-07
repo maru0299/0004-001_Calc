@@ -54,7 +54,9 @@ namespace WindowsFormsApp1
         // 式入力
         private void inputformula(char key)
         {
-            textBox_formula.AppendText(key.ToString());
+            //textBox_formula.AppendText(key.ToString());
+            textBox_formula.Text = textBox_formula.Text.Insert(textBox_formula.SelectionStart, key.ToString());
+            textBox_formula.SelectionStart += 1;
         }
 
         // 式計算
@@ -104,6 +106,21 @@ namespace WindowsFormsApp1
             textBox_result.Text = result.ToString();
         }
 
+        // 式テキストボックスのキャレット位置を移動する
+        // numで指定された移動する。
+        private void movecaret(int num)
+        {
+            if(textBox_formula.SelectionStart == 0 && num < 0)
+            {
+                return;
+            }
+            else
+            {
+                textBox_formula.SelectionStart += num;
+            }
+            textBox_debug_caret.Text = textBox_formula.SelectionStart.ToString();
+        }
+
 
 
 
@@ -120,7 +137,7 @@ namespace WindowsFormsApp1
                 e.Handled = true;
             }
 
-            textBox_debug.Text = e.KeyChar.ToString();
+            textBox_debug_key.Text = e.KeyChar.ToString();
 
             // キーボード入力：文字・数字キー
             switch (e.KeyChar)
@@ -217,7 +234,13 @@ namespace WindowsFormsApp1
             }
         }
 
-        // エンターキーの処理
+        // 式テキストボックスの内容が変更されたら都度calc関数を実行
+        private void textBox_formula_TextChanged(object sender, EventArgs e)
+        {
+            calc();
+        }
+
+        // エンターキー、矢印キーの処理　ProcessDialogKeyをオーバーライド
         protected override bool ProcessDialogKey(Keys keyData)
         {
             //Returnキーが押されているか調べる
@@ -229,15 +252,25 @@ namespace WindowsFormsApp1
                 //本来の処理はさせない
                 return true;
             }
+            else if ((keyData & Keys.KeyCode) == Keys.Left)
+            {
+                //Enterキー
+                movecaret(-1);
+                //本来の処理はさせない
+                return true;
+            }
+            else if ((keyData & Keys.KeyCode) == Keys.Right)
+            {
+                //Enterキー
+                movecaret(1);
+                //本来の処理はさせない
+                return true;
+            }
 
             return base.ProcessDialogKey(keyData);
         }
 
-        // 式テキストボックスの内容が変更されたら都度calc関数を実行
-        private void textBox_formula_TextChanged(object sender, EventArgs e)
-        {
-            calc();
-        }
+
 
 
 
