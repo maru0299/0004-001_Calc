@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -119,6 +120,18 @@ namespace WindowsFormsApp1
                 textBox_formula.SelectionStart += num;
             }
             textBox_debug_caret.Text = textBox_formula.SelectionStart.ToString();
+
+            Point point0 = textBox_formula.Location;
+            Point point1 = textBox_formula.GetPositionFromCharIndex(textBox_formula.SelectionStart);
+            Point point2 = point1;
+            point2.Y += 15;
+            textBox_debug_caret_x.Text = point1.X.ToString();
+            textBox_debug_caret_y.Text = point1.Y.ToString();
+            var pen = new Pen(Color.Black, 1);
+            Graphics caret = textBox_formula.CreateGraphics();
+            caret.Clear(Color.Transparent);
+            caret.DrawLine(pen, point1, point2);
+
         }
 
 
@@ -213,10 +226,6 @@ namespace WindowsFormsApp1
                 case ')':
                     this.button_kakko2.Focus();
                     this.button_kakko2.PerformClick();
-                    break;
-                case 'c':
-                    this.button_C.Focus();
-                    this.button_C.PerformClick();
                     break;
             }
         }
