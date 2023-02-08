@@ -2,10 +2,6 @@
 # この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
 ################################################################################
 
-/01_Project/.vs/WindowsFormsApp1/FileContentIndex/c196e157-25f5-4b68-8106-42c59ea9de84.vsidx
-/01_Project/.vs/WindowsFormsApp1/FileContentIndex/d55532ea-915f-4fb8-9f87-04909c7d1dcc.vsidx
-/01_Project/.vs/WindowsFormsApp1/FileContentIndex/ed0b3727-f9cb-4ab9-92d2-5f02791a3c49.vsidx
+/01_Project/.vs/WindowsFormsApp1/FileContentIndex/884c3506-9464-4f55-ad15-07143e1523a7.vsidx
+*.vsidx
 /01_Project/.vs/WindowsFormsApp1/v17/.suo
-/01_Project/.vs/WindowsFormsApp1/FileContentIndex/d6b44a3b-8ac3-4de7-9e62-88660f9c11b0.vsidx
-/01_Project/.vs/WindowsFormsApp1/FileContentIndex/615fcd8c-d066-4d08-8a55-bb85bef5fca9.vsidx
-/01_Project/.vs/WindowsFormsApp1/FileContentIndex/d4207409-4346-43da-868f-a7dd91b9add6.vsidx
