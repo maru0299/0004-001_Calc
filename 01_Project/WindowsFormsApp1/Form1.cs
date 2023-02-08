@@ -214,6 +214,10 @@ namespace WindowsFormsApp1
                     this.button_kakko2.Focus();
                     this.button_kakko2.PerformClick();
                     break;
+                case 'c':
+                    this.button_C.Focus();
+                    this.button_C.PerformClick();
+                    break;
             }
         }
 
@@ -264,6 +268,12 @@ namespace WindowsFormsApp1
                 //Enterキー
                 movecaret(1);
                 //本来の処理はさせない
+                return true;
+            }
+            else if ((keyData & Keys.KeyCode) == Keys.Escape)
+            {
+                this.button_C.Focus();
+                this.button_C.PerformClick();
                 return true;
             }
 
