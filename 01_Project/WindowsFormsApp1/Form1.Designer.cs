@@ -47,16 +47,14 @@
             this.textBox_result = new System.Windows.Forms.TextBox();
             this.textBox_formula = new System.Windows.Forms.TextBox();
             this.button_back = new System.Windows.Forms.Button();
-            this.textBox_debug_key = new System.Windows.Forms.TextBox();
             this.button_C = new System.Windows.Forms.Button();
             this.button_kakko2 = new System.Windows.Forms.Button();
             this.button_kakko1 = new System.Windows.Forms.Button();
-            this.textBox_debug_caret_x = new System.Windows.Forms.TextBox();
-            this.textBox_debug_caret_y = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox_debug_caret = new System.Windows.Forms.TextBox();
+            this.debug_table = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.debug_table)).BeginInit();
             this.SuspendLayout();
             // 
             // button_4
@@ -248,14 +246,6 @@
             this.button_back.UseVisualStyleBackColor = true;
             this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
-            // textBox_debug_key
-            // 
-            this.textBox_debug_key.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_debug_key.Location = new System.Drawing.Point(408, 368);
-            this.textBox_debug_key.Name = "textBox_debug_key";
-            this.textBox_debug_key.Size = new System.Drawing.Size(249, 34);
-            this.textBox_debug_key.TabIndex = 3;
-            // 
             // button_C
             // 
             this.button_C.Location = new System.Drawing.Point(212, 133);
@@ -286,56 +276,38 @@
             this.button_kakko1.UseVisualStyleBackColor = true;
             this.button_kakko1.Click += new System.EventHandler(this.button_kakko1_Click);
             // 
-            // textBox_debug_caret_x
-            // 
-            this.textBox_debug_caret_x.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_debug_caret_x.Location = new System.Drawing.Point(408, 298);
-            this.textBox_debug_caret_x.Name = "textBox_debug_caret_x";
-            this.textBox_debug_caret_x.Size = new System.Drawing.Size(116, 34);
-            this.textBox_debug_caret_x.TabIndex = 5;
-            // 
-            // textBox_debug_caret_y
-            // 
-            this.textBox_debug_caret_y.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_debug_caret_y.Location = new System.Drawing.Point(530, 298);
-            this.textBox_debug_caret_y.Name = "textBox_debug_caret_y";
-            this.textBox_debug_caret_y.Size = new System.Drawing.Size(116, 34);
-            this.textBox_debug_caret_y.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(408, 280);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(12, 12);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "X";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(528, 283);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(12, 12);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Y";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(408, 353);
+            this.label3.Location = new System.Drawing.Point(408, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 12);
+            this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 8;
-            this.label3.Text = "KeyData";
+            this.label3.Text = "debug";
             // 
-            // textBox_debug_caret
+            // debug_table
             // 
-            this.textBox_debug_caret.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_debug_caret.Location = new System.Drawing.Point(408, 229);
-            this.textBox_debug_caret.Name = "textBox_debug_caret";
-            this.textBox_debug_caret.Size = new System.Drawing.Size(238, 34);
-            this.textBox_debug_caret.TabIndex = 9;
+            this.debug_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.debug_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.value});
+            this.debug_table.Location = new System.Drawing.Point(410, 50);
+            this.debug_table.Name = "debug_table";
+            this.debug_table.RowTemplate.Height = 21;
+            this.debug_table.Size = new System.Drawing.Size(367, 352);
+            this.debug_table.TabIndex = 10;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // value
+            // 
+            this.value.HeaderText = "value";
+            this.value.Name = "value";
+            this.value.ReadOnly = true;
             // 
             // Form1
             // 
@@ -343,16 +315,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox_debug_caret);
+            this.Controls.Add(this.debug_table);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox_debug_caret_y);
-            this.Controls.Add(this.textBox_debug_caret_x);
             this.Controls.Add(this.button_kakko1);
             this.Controls.Add(this.button_kakko2);
             this.Controls.Add(this.button_C);
-            this.Controls.Add(this.textBox_debug_key);
             this.Controls.Add(this.button_0);
             this.Controls.Add(this.button_1);
             this.Controls.Add(this.button_2);
@@ -377,6 +344,7 @@
             this.Text = "Calc";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            ((System.ComponentModel.ISupportInitialize)(this.debug_table)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,16 +371,13 @@
         private System.Windows.Forms.TextBox textBox_result;
         private System.Windows.Forms.TextBox textBox_formula;
         private System.Windows.Forms.Button button_back;
-        private System.Windows.Forms.TextBox textBox_debug_key;
         private System.Windows.Forms.Button button_C;
         private System.Windows.Forms.Button button_kakko2;
         private System.Windows.Forms.Button button_kakko1;
-        private System.Windows.Forms.TextBox textBox_debug_caret_x;
-        private System.Windows.Forms.TextBox textBox_debug_caret_y;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox_debug_caret;
+        private System.Windows.Forms.DataGridView debug_table;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn value;
     }
 }
 
