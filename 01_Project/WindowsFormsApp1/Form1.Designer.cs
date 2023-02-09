@@ -52,7 +52,6 @@
             this.button_kakko1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.debug_table = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.debug_table)).BeginInit();
             this.SuspendLayout();
@@ -289,19 +288,14 @@
             // 
             this.debug_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.debug_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.name,
             this.value});
             this.debug_table.Location = new System.Drawing.Point(410, 50);
             this.debug_table.Name = "debug_table";
+            this.debug_table.ReadOnly = true;
+            this.debug_table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.debug_table.RowTemplate.Height = 21;
             this.debug_table.Size = new System.Drawing.Size(367, 352);
             this.debug_table.TabIndex = 10;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
             // 
             // value
             // 
@@ -376,7 +370,6 @@
         private System.Windows.Forms.Button button_kakko1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView debug_table;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn value;
     }
 }

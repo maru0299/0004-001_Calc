@@ -33,11 +33,14 @@ namespace WindowsFormsApp1
             AllowedChar.AddRange(AllowedChar);
             this.KeyPreview = true;
 
-            debug_table.AutoGenerateColumns = false;
-            debug_table.Rows.Add("key.char","");
-            debug_table.Rows.Add("caret index", "");
-            debug_table.Rows.Add("caret.X", "");
-            debug_table.Rows.Add("caret.Y", "");
+            debug_table.Rows.Add();
+            debug_table.Rows[0].HeaderCell.Value = "key";
+            debug_table.Rows.Add();
+            debug_table.Rows[1].HeaderCell.Value = "caret.index";
+            debug_table.Rows.Add();
+            debug_table.Rows[2].HeaderCell.Value = "caret.X";
+            debug_table.Rows.Add();
+            debug_table.Rows[3].HeaderCell.Value = "caret.Y";
         }
 
         //// 関数 ////
@@ -125,14 +128,15 @@ namespace WindowsFormsApp1
             {
                 textBox_formula.SelectionStart += num;
             }
-            debug_table[1,1].Value = textBox_formula.SelectionStart.ToString();
+            debug_table[0,1].Value = textBox_formula.SelectionStart.ToString();
+            debug_table[0, 1].Value = textBox_formula.SelectionStart.ToString();
 
             Point point0 = textBox_formula.Location;
             Point point1 = textBox_formula.GetPositionFromCharIndex(textBox_formula.SelectionStart);
             Point point2 = point1;
             point2.Y += 15;
-            debug_table[1,2].Value = point1.X.ToString();
-            debug_table[1,3].Value = point1.Y.ToString();
+            debug_table[0,2].Value = point1.X.ToString();
+            debug_table[0,3].Value = point1.Y.ToString();
             var pen = new Pen(Color.Black, 1);
             Graphics caret = textBox_formula.CreateGraphics();
             caret.Clear(Color.Transparent);
@@ -156,7 +160,7 @@ namespace WindowsFormsApp1
                 e.Handled = true;
             }
 
-            debug_table[1,0].Value = e.KeyChar.ToString();
+            debug_table[0,0].Value = e.KeyChar.ToString();
 
             // キーボード入力：文字・数字キー
             switch (e.KeyChar)
