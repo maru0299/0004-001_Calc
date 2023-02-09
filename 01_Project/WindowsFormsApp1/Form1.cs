@@ -73,7 +73,6 @@ namespace WindowsFormsApp1
         {
             textBox_formula.Text = textBox_formula.Text.Insert(CaretIndex, key.ToString());
             movecaret(1);
-            drawcaret();
         }
 
         // 式計算
@@ -145,7 +144,6 @@ namespace WindowsFormsApp1
 
             //キャレット描画
             drawcaret();
-
         }
 
         private void drawcaret()
@@ -285,7 +283,6 @@ namespace WindowsFormsApp1
         private void textBox_formula_TextChanged(object sender, EventArgs e)
         {
             calc();
-            drawcaret();
         }
 
         // エンターキー、矢印キーの処理　ProcessDialogKeyをオーバーライド
