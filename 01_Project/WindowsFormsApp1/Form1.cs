@@ -58,7 +58,6 @@ namespace WindowsFormsApp1
             {
                 textBox_formula.Text = textBox_formula.Text.Remove(CaretIndex-1,1);
                 movecaret(-1);
-                //textBox_formula.Text = textBox_formula.Text.Substring(0, Length - 1);
             }
         }
 
@@ -66,6 +65,7 @@ namespace WindowsFormsApp1
         private void clear_formula()
         {
             textBox_formula.ResetText();
+            CaretIndex = 0;
         }
 
         // 式入力
@@ -143,8 +143,7 @@ namespace WindowsFormsApp1
             // debug
             debug_table[0,1].Value = CaretIndex.ToString();
 
-            textBox_formula.SelectionStart = CaretIndex;
-
+            //キャレット描画
             drawcaret();
 
         }
