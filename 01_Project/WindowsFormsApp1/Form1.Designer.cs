@@ -44,8 +44,6 @@
             this.button_waru = new System.Windows.Forms.Button();
             this.button_hiku = new System.Windows.Forms.Button();
             this.button_tasu = new System.Windows.Forms.Button();
-            this.textBox_result = new System.Windows.Forms.TextBox();
-            this.textBox_formula = new System.Windows.Forms.TextBox();
             this.button_back = new System.Windows.Forms.Button();
             this.button_C = new System.Windows.Forms.Button();
             this.button_kakko2 = new System.Windows.Forms.Button();
@@ -53,6 +51,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.debug_table = new System.Windows.Forms.DataGridView();
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox_formula = new System.Windows.Forms.RichTextBox();
+            this.textBox_result = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.debug_table)).BeginInit();
             this.SuspendLayout();
             // 
@@ -216,25 +216,6 @@
             this.button_tasu.UseVisualStyleBackColor = true;
             this.button_tasu.Click += new System.EventHandler(this.button_tasu_Click);
             // 
-            // textBox_result
-            // 
-            this.textBox_result.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_result.Location = new System.Drawing.Point(42, 35);
-            this.textBox_result.Name = "textBox_result";
-            this.textBox_result.ReadOnly = true;
-            this.textBox_result.Size = new System.Drawing.Size(334, 34);
-            this.textBox_result.TabIndex = 1;
-            // 
-            // textBox_formula
-            // 
-            this.textBox_formula.Font = new System.Drawing.Font("MS UI Gothic", 20F);
-            this.textBox_formula.Location = new System.Drawing.Point(42, 80);
-            this.textBox_formula.Name = "textBox_formula";
-            this.textBox_formula.ReadOnly = true;
-            this.textBox_formula.Size = new System.Drawing.Size(249, 34);
-            this.textBox_formula.TabIndex = 2;
-            this.textBox_formula.TextChanged += new System.EventHandler(this.textBox_formula_TextChanged);
-            // 
             // button_back
             // 
             this.button_back.Location = new System.Drawing.Point(297, 78);
@@ -303,12 +284,40 @@
             this.value.Name = "value";
             this.value.ReadOnly = true;
             // 
+            // textBox_formula
+            // 
+            this.textBox_formula.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.textBox_formula.Location = new System.Drawing.Point(42, 78);
+            this.textBox_formula.Multiline = false;
+            this.textBox_formula.Name = "textBox_formula";
+            this.textBox_formula.ReadOnly = true;
+            this.textBox_formula.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.textBox_formula.Size = new System.Drawing.Size(249, 34);
+            this.textBox_formula.TabIndex = 11;
+            this.textBox_formula.Text = "";
+            this.textBox_formula.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_formula_MouseClick);
+            this.textBox_formula.TextChanged += new System.EventHandler(this.textBox_formula_TextChanged);
+            // 
+            // textBox_result
+            // 
+            this.textBox_result.Font = new System.Drawing.Font("MS UI Gothic", 20F);
+            this.textBox_result.Location = new System.Drawing.Point(42, 35);
+            this.textBox_result.Multiline = false;
+            this.textBox_result.Name = "textBox_result";
+            this.textBox_result.ReadOnly = true;
+            this.textBox_result.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.textBox_result.Size = new System.Drawing.Size(334, 34);
+            this.textBox_result.TabIndex = 12;
+            this.textBox_result.Text = "";
+            // 
             // Form1
             // 
             this.AcceptButton = this.button_equal;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox_result);
+            this.Controls.Add(this.textBox_formula);
             this.Controls.Add(this.debug_table);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button_kakko1);
@@ -324,8 +333,6 @@
             this.Controls.Add(this.button_7);
             this.Controls.Add(this.button_8);
             this.Controls.Add(this.button_9);
-            this.Controls.Add(this.textBox_formula);
-            this.Controls.Add(this.textBox_result);
             this.Controls.Add(this.button_equal);
             this.Controls.Add(this.button_tasu);
             this.Controls.Add(this.button_dot);
@@ -362,8 +369,6 @@
         private System.Windows.Forms.Button button_waru;
         private System.Windows.Forms.Button button_hiku;
         private System.Windows.Forms.Button button_tasu;
-        private System.Windows.Forms.TextBox textBox_result;
-        private System.Windows.Forms.TextBox textBox_formula;
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.Button button_C;
         private System.Windows.Forms.Button button_kakko2;
@@ -371,6 +376,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView debug_table;
         private System.Windows.Forms.DataGridViewTextBoxColumn value;
+        private System.Windows.Forms.RichTextBox textBox_formula;
+        private System.Windows.Forms.RichTextBox textBox_result;
     }
 }
 

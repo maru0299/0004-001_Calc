@@ -23,6 +23,8 @@ namespace WindowsFormsApp1
         List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')','√'};
         // 入力を許可する文字のリスト
         List<char> AllowedChar = new List<char>();
+        // 式入力バーのキャレット位置
+        int CaretIndex = 0;
 
         public Form1()
         {
@@ -33,6 +35,7 @@ namespace WindowsFormsApp1
             AllowedChar.AddRange(AllowedChar);
             this.KeyPreview = true;
 
+            // debug
             debug_table.Rows.Add();
             debug_table.Rows[0].HeaderCell.Value = "key";
             debug_table.Rows.Add();
@@ -41,6 +44,9 @@ namespace WindowsFormsApp1
             debug_table.Rows[2].HeaderCell.Value = "caret.X";
             debug_table.Rows.Add();
             debug_table.Rows[3].HeaderCell.Value = "caret.Y";
+
+            // 
+            drawcaret();
         }
 
         //// 関数 ////
@@ -64,9 +70,11 @@ namespace WindowsFormsApp1
         // 式入力
         private void inputformula(char key)
         {
-            //textBox_formula.AppendText(key.ToString());
-            textBox_formula.Text = textBox_formula.Text.Insert(textBox_formula.SelectionStart, key.ToString());
-            textBox_formula.SelectionStart += 1;
+            CaretIndex = textBox_formula.Text.Length;
+            //textBox_formula1.AppendText(key.ToString());
+            textBox_formula.Text = textBox_formula.Text.Insert(CaretIndex, key.ToString());
+            CaretIndex += 1;
+            drawcaret();
         }
 
         // 式計算
@@ -120,39 +128,53 @@ namespace WindowsFormsApp1
         // numで指定された移動する。
         private void movecaret(int num)
         {
-            if(textBox_formula.SelectionStart == 0 && num < 0)
+            if (CaretIndex == 0 && num < 0)
+            {
+                return;
+            }
+            else if (CaretIndex == textBox_formula.Text.Length && num > 0)
             {
                 return;
             }
             else
             {
-                textBox_formula.SelectionStart += num;
+                CaretIndex += num;
             }
-            debug_table[0,1].Value = textBox_formula.SelectionStart.ToString();
-            debug_table[0, 1].Value = textBox_formula.SelectionStart.ToString();
 
-            Point point0 = textBox_formula.Location;
-            Point point1 = textBox_formula.GetPositionFromCharIndex(textBox_formula.SelectionStart);
+            // debug
+            debug_table[0,1].Value = CaretIndex.ToString();
+
+            textBox_formula.SelectionStart = CaretIndex;
+
+            drawcaret();
+
+        }
+
+        private void drawcaret()
+        {
+            // テキストボックス内のキャレット座標を取得
+            Point point1 = textBox_formula.GetPositionFromCharIndex(CaretIndex);
             Point point2 = point1;
-            point2.Y += 15;
-            debug_table[0,2].Value = point1.X.ToString();
-            debug_table[0,3].Value = point1.Y.ToString();
+            point2.Y += 20;
+
+            // debug
+            debug_table[0, 2].Value = point1.X.ToString();
+            debug_table[0, 3].Value = point1.Y.ToString();
+
+            // キャレットの描画
             var pen = new Pen(Color.Black, 1);
             Graphics caret = textBox_formula.CreateGraphics();
-            caret.Clear(Color.Transparent);
-            caret.DrawLine(pen, point1, point2);
-
+            textBox_formula.Refresh();  // 古い描画物を消す
+            caret.DrawLine(pen, point1, point2);    // キャレット表示
         }
 
 
 
 
+            //// イベントハンドラ ////
 
-
-        //// イベントハンドラ ////
-
-        // 文字・数字キーの処理
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+            // 文字・数字キーの処理
+            private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 許可したキー以外の時は、イベントをキャンセルする
             if (!AllowedChar.Contains(e.KeyChar))
@@ -299,6 +321,11 @@ namespace WindowsFormsApp1
             return base.ProcessDialogKey(keyData);
         }
 
+        private void textBox_formula_MouseClick(object sender, MouseEventArgs e)
+        {
+            CaretIndex = textBox_formula.SelectionStart;
+            drawcaret();
+        }
 
 
 
@@ -408,5 +435,6 @@ namespace WindowsFormsApp1
         {
             inputformula(')');// 入力処理を行う関数を呼ぶ
         }
+
     }
 }
