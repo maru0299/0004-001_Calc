@@ -54,10 +54,11 @@ namespace WindowsFormsApp1
         // バックスペース処理
         private void backspace()
         {
-            int Length = textBox_formula.Text.Length;
-            if (Length != 0)
+            if (textBox_formula.Text.Length != 0 && CaretIndex != 0)
             {
-                textBox_formula.Text = textBox_formula.Text.Substring(0, Length - 1);
+                textBox_formula.Text = textBox_formula.Text.Remove(CaretIndex-1,1);
+                movecaret(-1);
+                //textBox_formula.Text = textBox_formula.Text.Substring(0, Length - 1);
             }
         }
 
@@ -70,10 +71,8 @@ namespace WindowsFormsApp1
         // 式入力
         private void inputformula(char key)
         {
-            CaretIndex = textBox_formula.Text.Length;
-            //textBox_formula1.AppendText(key.ToString());
             textBox_formula.Text = textBox_formula.Text.Insert(CaretIndex, key.ToString());
-            CaretIndex += 1;
+            movecaret(1);
             drawcaret();
         }
 
@@ -167,6 +166,10 @@ namespace WindowsFormsApp1
             textBox_formula.Refresh();  // 古い描画物を消す
             caret.DrawLine(pen, point1, point2);    // キャレット表示
         }
+
+
+
+
 
 
 
@@ -283,6 +286,7 @@ namespace WindowsFormsApp1
         private void textBox_formula_TextChanged(object sender, EventArgs e)
         {
             calc();
+            drawcaret();
         }
 
         // エンターキー、矢印キーの処理　ProcessDialogKeyをオーバーライド
