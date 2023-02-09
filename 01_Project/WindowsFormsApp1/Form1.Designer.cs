@@ -244,7 +244,6 @@
             this.button_kakko2.TabIndex = 4;
             this.button_kakko2.Text = ")";
             this.button_kakko2.UseVisualStyleBackColor = true;
-            this.button_kakko2.Visible = false;
             this.button_kakko2.Click += new System.EventHandler(this.button_kakko2_Click);
             // 
             // button_kakko1
@@ -255,7 +254,6 @@
             this.button_kakko1.TabIndex = 4;
             this.button_kakko1.Text = "(";
             this.button_kakko1.UseVisualStyleBackColor = true;
-            this.button_kakko1.Visible = false;
             this.button_kakko1.Click += new System.EventHandler(this.button_kakko1_Click);
             // 
             // label3

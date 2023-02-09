@@ -50,7 +50,49 @@ namespace WindowsFormsApp1
         }
 
         //// 関数 ////
- 
+
+        // 式テキストボックスのキャレット位置を移動する
+        // numで指定された移動する。
+        private void movecaret(int num)
+        {
+            if (CaretIndex == 0 && num < 0)
+            {
+                return;
+            }
+            else if (CaretIndex == textBox_formula.Text.Length && num > 0)
+            {
+                return;
+            }
+            else
+            {
+                CaretIndex += num;
+            }
+
+            // debug
+            debug_table[0, 1].Value = CaretIndex.ToString();
+
+            //キャレット描画
+            drawcaret();
+        }
+
+        private void drawcaret()
+        {
+            // テキストボックス内のキャレット座標を取得
+            Point point1 = textBox_formula.GetPositionFromCharIndex(CaretIndex);
+            Point point2 = point1;
+            point2.Y += 20;
+
+            // debug
+            debug_table[0, 2].Value = point1.X.ToString();
+            debug_table[0, 3].Value = point1.Y.ToString();
+
+            // キャレットの描画
+            var pen = new Pen(Color.Black, 1);
+            Graphics caret = textBox_formula.CreateGraphics();
+            textBox_formula.Refresh();  // 古い描画物を消す
+            caret.DrawLine(pen, point1, point2);    // キャレット表示
+        }
+
         // バックスペース処理
         private void backspace()
         {
@@ -85,84 +127,56 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            // 式を要素に分解
-            // 数字
-            var calc_num = textBox_formula.Text.Split(AllowedSynbol.ToArray(), StringSplitOptions.RemoveEmptyEntries);
-            // 演算子
-            var calc_synbol = textBox_formula.Text.Split(calc_num, StringSplitOptions.RemoveEmptyEntries);
-            // 式の項数
-            int length_num = calc_num.Length;
-            // 演算子の数
-            int length_synbol = calc_synbol.Length;
+            //// 式を要素に分解
+            //// 数字
+            //var calc_num = textBox_formula.Text.Split(AllowedSynbol.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            //// 演算子
+            //var calc_synbol = textBox_formula.Text.Split(calc_num, StringSplitOptions.RemoveEmptyEntries);
+            //// 式の項数
+            //int length_num = calc_num.Length;
+            //// 演算子の数
+            //int length_synbol = calc_synbol.Length;
 
-            // 解を入れる変数
-            double result = double.Parse(calc_num[0]);
+            //// 解を入れる変数
+            // double result = double.Parse(calc_num[0]);
 
-            // 計算処理（i+1番目の演算子の処理）
-            for (int i = 0; i < length_num-1; i++)
+            //// 計算処理（i+1番目の演算子の処理）
+            //for (int i = 0; i < length_num-1; i++)
+            //{
+            //    switch (calc_synbol[i])
+            //    {
+            //        case "+":
+            //            result += double.Parse(calc_num[i + 1]);
+            //            break;
+            //        case "-":
+            //            result -= double.Parse(calc_num[i + 1]);
+            //            break;
+            //        case "*":
+            //            result *= double.Parse(calc_num[i + 1]);
+            //            break;
+            //        case "/":
+            //            result /= double.Parse(calc_num[i + 1]);
+            //            break;
+            //    }
+            //}
+
+
+            System.Data.DataTable dt = new System.Data.DataTable();
+            
+            try
             {
-                switch (calc_synbol[i])
-                {
-                    case "+":
-                        result += double.Parse(calc_num[i + 1]);
-                        break;
-                    case "-":
-                        result -= double.Parse(calc_num[i + 1]);
-                        break;
-                    case "*":
-                        result *= double.Parse(calc_num[i + 1]);
-                        break;
-                    case "/":
-                        result /= double.Parse(calc_num[i + 1]);
-                        break;
-                }
+                string result = dt.Compute(textBox_formula.Text, null).ToString();
+                textBox_result.Text = result.ToString();
             }
-
+            catch
+            {
+                textBox_result.Text = "";
+            }
             // 解をテキストボックスに表示
-            textBox_result.Text = result.ToString();
+
         }
 
-        // 式テキストボックスのキャレット位置を移動する
-        // numで指定された移動する。
-        private void movecaret(int num)
-        {
-            if (CaretIndex == 0 && num < 0)
-            {
-                return;
-            }
-            else if (CaretIndex == textBox_formula.Text.Length && num > 0)
-            {
-                return;
-            }
-            else
-            {
-                CaretIndex += num;
-            }
 
-            // debug
-            debug_table[0,1].Value = CaretIndex.ToString();
-
-            //キャレット描画
-            drawcaret();
-        }
-
-        private void drawcaret()
-        {
-            // テキストボックス内のキャレット座標を取得
-            Point point1 = textBox_formula.GetPositionFromCharIndex(CaretIndex);
-            Point point2 = point1;
-            point2.Y += 20;
-
-            // debug
-            debug_table[0, 2].Value = point1.X.ToString();
-            debug_table[0, 3].Value = point1.Y.ToString();
-
-            // キャレットの描画
-            var pen = new Pen(Color.Black, 1);
-            Graphics caret = textBox_formula.CreateGraphics();
-            textBox_formula.Refresh();  // 古い描画物を消す
-            caret.DrawLine(pen, point1, point2);    // キャレット表示
-        }
 
 
 
@@ -315,6 +329,10 @@ namespace WindowsFormsApp1
             {
                 this.button_C.Focus();
                 this.button_C.PerformClick();
+                return true;
+            }
+            else if ((keyData & Keys.KeyCode) == Keys.Space)
+            {
                 return true;
             }
 
