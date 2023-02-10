@@ -111,12 +111,16 @@ namespace WindowsFormsApp1
         }
 
         // バックスペース処理
-        private void backspace()
+        private void remove_char(bool back)
         {
-            if (textBox_formula.Text.Length != 0 && CaretIndex != 0)
+            if (back == true && textBox_formula.Text.Length != 0 && CaretIndex != 0)
             {
-                textBox_formula.Text = textBox_formula.Text.Remove(CaretIndex-1,1);
+                textBox_formula.Text = textBox_formula.Text.Remove(CaretIndex - 1, 1);
                 movecaret(-1);
+            }
+            else if(back == false && CaretIndex != textBox_formula.Text.Length)
+            {
+                textBox_formula.Text = textBox_formula.Text.Remove(CaretIndex, 1);
             }
         }
 
@@ -186,6 +190,11 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void enter()
+        {
+
+        }
+
 
 
 
@@ -197,7 +206,7 @@ namespace WindowsFormsApp1
 
             //// イベントハンドラ ////
 
-            // 文字・数字キーの処理
+        // 文字・数字キーの処理
             private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 許可したキー以外の時は、イベントをキャンセルする
@@ -272,8 +281,8 @@ namespace WindowsFormsApp1
                     this.button_dot.PerformClick();
                     break;
                 case '=':
-                    this.button_equal.Focus();
-                    this.button_equal.PerformClick();
+                    this.button_enter.Focus();
+                    this.button_enter.PerformClick();
                     break;
                 case '(':
                     this.button_kakko1.Focus();
@@ -296,9 +305,11 @@ namespace WindowsFormsApp1
             {
                 // BackSpace
                 case Keys.Back:
-                case Keys.Delete:
                     this.button_back.Focus();
                     this.button_back.PerformClick();
+                    break;
+                case Keys.Delete:
+                    remove_char(false);
                     break;
             }
         }
@@ -316,8 +327,8 @@ namespace WindowsFormsApp1
             if ((keyData & Keys.KeyCode) == Keys.Return)
             {
                 //Enterキー
-                this.button_equal.Focus();
-                this.button_equal.PerformClick();
+                this.button_enter.Focus();
+                this.button_enter.PerformClick();
                 //本来の処理はさせない
                 return true;
             }
@@ -414,9 +425,9 @@ namespace WindowsFormsApp1
             inputformula('0');// 入力処理を行う関数を呼ぶ
         }
 
-        private void button_equal_Click(object sender, EventArgs e)
+        private void button_enter_Click(object sender, EventArgs e)
         {
-            calc();// 計算関数を呼ぶ
+            enter();// 計算関数を呼ぶ
         }
 
         private void button_dot_Click(object sender, EventArgs e)
@@ -446,7 +457,7 @@ namespace WindowsFormsApp1
 
         private void button_back_Click(object sender, EventArgs e)
         {
-            backspace();
+            remove_char(true);
         }
 
         private void button_C_Click(object sender, EventArgs e)
@@ -463,6 +474,5 @@ namespace WindowsFormsApp1
         {
             inputformula(')');// 入力処理を行う関数を呼ぶ
         }
-
     }
 }

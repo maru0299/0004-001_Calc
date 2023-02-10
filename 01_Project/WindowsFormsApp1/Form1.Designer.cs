@@ -33,7 +33,7 @@
             this.button_6 = new System.Windows.Forms.Button();
             this.button_3 = new System.Windows.Forms.Button();
             this.button_dot = new System.Windows.Forms.Button();
-            this.button_equal = new System.Windows.Forms.Button();
+            this.button_enter = new System.Windows.Forms.Button();
             this.button_2 = new System.Windows.Forms.Button();
             this.button_1 = new System.Windows.Forms.Button();
             this.button_0 = new System.Windows.Forms.Button();
@@ -53,7 +53,11 @@
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_formula = new System.Windows.Forms.RichTextBox();
             this.textBox_result = new System.Windows.Forms.RichTextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.solution = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.debug_table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_4
@@ -106,15 +110,16 @@
             this.button_dot.UseVisualStyleBackColor = true;
             this.button_dot.Click += new System.EventHandler(this.button_dot_Click);
             // 
-            // button_equal
+            // button_enter
             // 
-            this.button_equal.Location = new System.Drawing.Point(297, 353);
-            this.button_equal.Name = "button_equal";
-            this.button_equal.Size = new System.Drawing.Size(79, 49);
-            this.button_equal.TabIndex = 0;
-            this.button_equal.Text = "＝";
-            this.button_equal.UseVisualStyleBackColor = true;
-            this.button_equal.Click += new System.EventHandler(this.button_equal_Click);
+            this.button_enter.Font = new System.Drawing.Font("MS UI Gothic", 15F);
+            this.button_enter.Location = new System.Drawing.Point(297, 353);
+            this.button_enter.Name = "button_enter";
+            this.button_enter.Size = new System.Drawing.Size(79, 49);
+            this.button_enter.TabIndex = 0;
+            this.button_enter.Text = "↵";
+            this.button_enter.UseVisualStyleBackColor = true;
+            this.button_enter.Click += new System.EventHandler(this.button_enter_Click);
             // 
             // button_2
             // 
@@ -259,7 +264,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(408, 35);
+            this.label3.Location = new System.Drawing.Point(677, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 8;
@@ -272,12 +277,12 @@
             this.debug_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.debug_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.value});
-            this.debug_table.Location = new System.Drawing.Point(410, 50);
+            this.debug_table.Location = new System.Drawing.Point(679, 50);
             this.debug_table.Name = "debug_table";
             this.debug_table.ReadOnly = true;
             this.debug_table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.debug_table.RowTemplate.Height = 21;
-            this.debug_table.Size = new System.Drawing.Size(367, 352);
+            this.debug_table.Size = new System.Drawing.Size(187, 352);
             this.debug_table.TabIndex = 10;
             // 
             // value
@@ -313,12 +318,44 @@
             this.textBox_result.TabIndex = 12;
             this.textBox_result.Text = "";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.solution,
+            this.dataGridViewTextBoxColumn1});
+            this.dataGridView1.Location = new System.Drawing.Point(396, 35);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridView1.RowTemplate.Height = 21;
+            this.dataGridView1.Size = new System.Drawing.Size(261, 367);
+            this.dataGridView1.TabIndex = 13;
+            // 
+            // solution
+            // 
+            this.solution.HeaderText = "Solution";
+            this.solution.Name = "solution";
+            this.solution.ReadOnly = true;
+            this.solution.Width = 71;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Formula";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 71;
+            // 
             // Form1
             // 
-            this.AcceptButton = this.button_equal;
+            this.AcceptButton = this.button_enter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(895, 429);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox_result);
             this.Controls.Add(this.textBox_formula);
             this.Controls.Add(this.debug_table);
@@ -336,7 +373,7 @@
             this.Controls.Add(this.button_7);
             this.Controls.Add(this.button_8);
             this.Controls.Add(this.button_9);
-            this.Controls.Add(this.button_equal);
+            this.Controls.Add(this.button_enter);
             this.Controls.Add(this.button_tasu);
             this.Controls.Add(this.button_dot);
             this.Controls.Add(this.button_hiku);
@@ -349,6 +386,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.debug_table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,7 +399,7 @@
         private System.Windows.Forms.Button button_6;
         private System.Windows.Forms.Button button_3;
         private System.Windows.Forms.Button button_dot;
-        private System.Windows.Forms.Button button_equal;
+        private System.Windows.Forms.Button button_enter;
         private System.Windows.Forms.Button button_2;
         private System.Windows.Forms.Button button_1;
         private System.Windows.Forms.Button button_0;
@@ -381,6 +419,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn value;
         private System.Windows.Forms.RichTextBox textBox_formula;
         private System.Windows.Forms.RichTextBox textBox_result;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn solution;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }
 
