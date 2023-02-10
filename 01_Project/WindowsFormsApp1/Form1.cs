@@ -52,6 +52,8 @@ namespace WindowsFormsApp1
             debug_table.Rows[2].HeaderCell.Value = "caret.X";
             debug_table.Rows.Add();
             debug_table.Rows[3].HeaderCell.Value = "caret.Y";
+            debug_table.Rows.Add();
+            debug_table.Rows[4].HeaderCell.Value = "Exception";
 
             // 正規表現に使う
             foreach (char i in AllowedSynbol1)
@@ -135,32 +137,52 @@ namespace WindowsFormsApp1
         // 式計算
         private void calc()
         {
-            //// エラー処理 式に何も入力されていないときは何も処理せずreturn
-            //if (textBox_formula.TextLength == 0)
-            //{
-            //    textBox_result.ResetText();
-            //    return;
-            //}
-
             // 計算→解を表示
-
             try
             {
                 // 演算子の多重入力チェック
                 if (Regex.IsMatch(textBox_formula.Text, pattern))
                 {
-                    throw new Exception("演算子の多重入力です");
+                    throw new SyntaxErrorException("演算子の多重入力");
                 }
 
                 // 計算
                 System.Data.DataTable dt = new System.Data.DataTable();
                 string result = dt.Compute(textBox_formula.Text, null).ToString();
+
+                // 
+                if (result == "∞")
+                {
+                    throw new OverflowException();
+                }
                 textBox_result.Text = result.ToString();
+
+                // debug
+                debug_table[0, 4].Value = "";
             }
-            catch   
+            catch(Exception e)
             {
-                // 例外が出たら解テキストを空欄にする
-                textBox_result.Text = "";
+                // debug
+                debug_table[0,4].Value = e.GetType().ToString();
+
+                if (e is DivideByZeroException)  //ゼロで割ったとき
+                {
+                    textBox_result.Text = "zero divide";
+                }
+                else if(e is OverflowException) // 解がオーバーフローしたとき
+                {
+                    textBox_result.Text = "overflow";
+                }
+                else if(e is SyntaxErrorException)
+                {
+                    textBox_result.Text = "";
+                }
+                else // その他
+                {
+                    // 解テキストを空欄にする
+                    textBox_result.Text = "";
+                }
+
             }
         }
 

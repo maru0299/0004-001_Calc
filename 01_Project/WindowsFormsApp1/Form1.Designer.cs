@@ -267,6 +267,8 @@
             // 
             // debug_table
             // 
+            this.debug_table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.debug_table.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.debug_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.debug_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.value});
@@ -283,6 +285,7 @@
             this.value.HeaderText = "value";
             this.value.Name = "value";
             this.value.ReadOnly = true;
+            this.value.Width = 57;
             // 
             // textBox_formula
             // 
