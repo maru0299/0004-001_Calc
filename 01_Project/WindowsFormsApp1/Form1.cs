@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
@@ -19,21 +20,27 @@ namespace WindowsFormsApp1
     {
         // キー入力を許可する数字のリスト
         List<char> AllowedNum = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-        // キー入力を許可する記号のリスト
-        List<char> AllowedSynbol = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^', '(', ')','√'};
+        // キー入力を許可する記号のリスト（ダブりNG）
+        List<char> AllowedSynbol1 = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^','√'};
+        // キー入力を許可する記号のリスト（ダブりOK）
+        List<char> AllowedSynbol2 = new List<char>() {'(', ')'};
         // 入力を許可する文字のリスト
         List<char> AllowedChar = new List<char>();
         // 式入力バーのキャレット位置
         int CaretIndex = 0;
+        // 演算子の多重入力エラーを検出する際に正規表現に使うキーワード
+        string keyword = "";
 
         public Form1()
         {
             InitializeComponent();
+            // キーイベントハンドラ設定
+            this.KeyPreview = true;
 
             // 入力を許可する文字の定義
             AllowedChar.AddRange(AllowedNum);
-            AllowedChar.AddRange(AllowedChar);
-            this.KeyPreview = true;
+            AllowedChar.AddRange(AllowedSynbol1);
+            AllowedChar.AddRange(AllowedSynbol2);
 
             // debug
             debug_table.Rows.Add();
@@ -45,7 +52,13 @@ namespace WindowsFormsApp1
             debug_table.Rows.Add();
             debug_table.Rows[3].HeaderCell.Value = "caret.Y";
 
-            // 
+            // 正規表現に使う
+            foreach (char i in AllowedSynbol1)
+            {
+                keyword = keyword +"\\"+ i.ToString();
+            }
+
+            // キャレットの描画
             drawcaret();
         }
 
@@ -118,7 +131,7 @@ namespace WindowsFormsApp1
         }
 
         // 式計算
-        private void calc()
+        private async void calc()
         {
             // エラー処理 式に何も入力されていないときは何も処理せずreturn
             if (textBox_formula.TextLength == 0)
@@ -127,53 +140,25 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            //// 式を要素に分解
-            //// 数字
-            //var calc_num = textBox_formula.Text.Split(AllowedSynbol.ToArray(), StringSplitOptions.RemoveEmptyEntries);
-            //// 演算子
-            //var calc_synbol = textBox_formula.Text.Split(calc_num, StringSplitOptions.RemoveEmptyEntries);
-            //// 式の項数
-            //int length_num = calc_num.Length;
-            //// 演算子の数
-            //int length_synbol = calc_synbol.Length;
-
-            //// 解を入れる変数
-            // double result = double.Parse(calc_num[0]);
-
-            //// 計算処理（i+1番目の演算子の処理）
-            //for (int i = 0; i < length_num-1; i++)
-            //{
-            //    switch (calc_synbol[i])
-            //    {
-            //        case "+":
-            //            result += double.Parse(calc_num[i + 1]);
-            //            break;
-            //        case "-":
-            //            result -= double.Parse(calc_num[i + 1]);
-            //            break;
-            //        case "*":
-            //            result *= double.Parse(calc_num[i + 1]);
-            //            break;
-            //        case "/":
-            //            result /= double.Parse(calc_num[i + 1]);
-            //            break;
-            //    }
-            //}
-
-
+            // 計算→解を表示
             System.Data.DataTable dt = new System.Data.DataTable();
-            
             try
             {
                 string result = dt.Compute(textBox_formula.Text, null).ToString();
+
+                string pattern = "[" + keyword + "][" + keyword + "]";
+                if (Regex.IsMatch(textBox_formula.Text, pattern))
+                {
+                    throw new Exception("多重入力です");
+                }
+
                 textBox_result.Text = result.ToString();
             }
-            catch
+            catch   
             {
+                // 例外が出たら解テキストを空欄にする
                 textBox_result.Text = "";
             }
-            // 解をテキストボックスに表示
-
         }
 
 
