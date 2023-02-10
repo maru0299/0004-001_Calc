@@ -53,11 +53,13 @@
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_formula = new System.Windows.Forms.RichTextBox();
             this.textBox_result = new System.Windows.Forms.RichTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.history = new System.Windows.Forms.DataGridView();
             this.solution = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_mod = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.debug_table)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.history)).BeginInit();
             this.SuspendLayout();
             // 
             // button_4
@@ -102,7 +104,7 @@
             // 
             // button_dot
             // 
-            this.button_dot.Location = new System.Drawing.Point(212, 353);
+            this.button_dot.Location = new System.Drawing.Point(127, 353);
             this.button_dot.Name = "button_dot";
             this.button_dot.Size = new System.Drawing.Size(79, 49);
             this.button_dot.TabIndex = 0;
@@ -113,7 +115,7 @@
             // button_enter
             // 
             this.button_enter.Font = new System.Drawing.Font("MS UI Gothic", 15F);
-            this.button_enter.Location = new System.Drawing.Point(297, 353);
+            this.button_enter.Location = new System.Drawing.Point(212, 353);
             this.button_enter.Name = "button_enter";
             this.button_enter.Size = new System.Drawing.Size(79, 49);
             this.button_enter.TabIndex = 0;
@@ -143,7 +145,7 @@
             // 
             // button_0
             // 
-            this.button_0.Location = new System.Drawing.Point(127, 353);
+            this.button_0.Location = new System.Drawing.Point(42, 353);
             this.button_0.Name = "button_0";
             this.button_0.Size = new System.Drawing.Size(79, 49);
             this.button_0.TabIndex = 0;
@@ -264,7 +266,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(677, 35);
+            this.label3.Location = new System.Drawing.Point(661, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 8;
@@ -277,12 +279,12 @@
             this.debug_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.debug_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.value});
-            this.debug_table.Location = new System.Drawing.Point(679, 50);
+            this.debug_table.Location = new System.Drawing.Point(663, 35);
             this.debug_table.Name = "debug_table";
             this.debug_table.ReadOnly = true;
             this.debug_table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.debug_table.RowTemplate.Height = 21;
-            this.debug_table.Size = new System.Drawing.Size(187, 352);
+            this.debug_table.Size = new System.Drawing.Size(187, 367);
             this.debug_table.TabIndex = 10;
             // 
             // value
@@ -318,22 +320,23 @@
             this.textBox_result.TabIndex = 12;
             this.textBox_result.Text = "";
             // 
-            // dataGridView1
+            // history
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.history.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.history.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.history.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.history.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.solution,
             this.dataGridViewTextBoxColumn1});
-            this.dataGridView1.Location = new System.Drawing.Point(396, 35);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(261, 367);
-            this.dataGridView1.TabIndex = 13;
+            this.history.Location = new System.Drawing.Point(394, 35);
+            this.history.MultiSelect = false;
+            this.history.Name = "history";
+            this.history.ReadOnly = true;
+            this.history.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.history.RowTemplate.Height = 21;
+            this.history.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.history.Size = new System.Drawing.Size(261, 367);
+            this.history.TabIndex = 13;
             // 
             // solution
             // 
@@ -349,13 +352,34 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 71;
             // 
+            // button_mod
+            // 
+            this.button_mod.Location = new System.Drawing.Point(297, 353);
+            this.button_mod.Name = "button_mod";
+            this.button_mod.Size = new System.Drawing.Size(79, 49);
+            this.button_mod.TabIndex = 14;
+            this.button_mod.Text = "％";
+            this.button_mod.UseVisualStyleBackColor = true;
+            this.button_mod.Click += new System.EventHandler(this.button_mod_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(392, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 12);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "History";
+            // 
             // Form1
             // 
             this.AcceptButton = this.button_enter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(895, 429);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(874, 429);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button_mod);
+            this.Controls.Add(this.history);
             this.Controls.Add(this.textBox_result);
             this.Controls.Add(this.textBox_formula);
             this.Controls.Add(this.debug_table);
@@ -386,7 +410,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.debug_table)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.history)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,9 +443,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn value;
         private System.Windows.Forms.RichTextBox textBox_formula;
         private System.Windows.Forms.RichTextBox textBox_result;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView history;
         private System.Windows.Forms.DataGridViewTextBoxColumn solution;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button button_mod;
+        private System.Windows.Forms.Label label1;
     }
 }
 

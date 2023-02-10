@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
         // キー入力を許可する数字のリスト
         List<char> AllowedNum = new List<char>() { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
         // キー入力を許可する記号のリスト（ダブりNG）
-        List<char> AllowedSynbol1 = new List<char>() { '+', '-', '*', '/', '=', '.', '\b', '^','√'};
+        List<char> AllowedSynbol1 = new List<char>() { '+', '-', '*', '/', '.', '\b'};
         // キー入力を許可する記号のリスト（ダブりOK）
         List<char> AllowedSynbol2 = new List<char>() {'(', ')'};
         // 入力を許可する文字のリスト
@@ -192,7 +192,10 @@ namespace WindowsFormsApp1
 
         private void enter()
         {
-
+            if(textBox_result.Text != "")
+            {
+                    history.Rows.Insert(0, textBox_result.Text, textBox_formula.Text);
+            }
         }
 
 
@@ -280,10 +283,6 @@ namespace WindowsFormsApp1
                     this.button_dot.Focus();
                     this.button_dot.PerformClick();
                     break;
-                case '=':
-                    this.button_enter.Focus();
-                    this.button_enter.PerformClick();
-                    break;
                 case '(':
                     this.button_kakko1.Focus();
                     this.button_kakko1.PerformClick();
@@ -291,6 +290,10 @@ namespace WindowsFormsApp1
                 case ')':
                     this.button_kakko2.Focus();
                     this.button_kakko2.PerformClick();
+                    break;
+                case '%':
+                    this.button_mod.Focus();
+                    this.button_mod.PerformClick();
                     break;
             }
         }
@@ -334,14 +337,14 @@ namespace WindowsFormsApp1
             }
             else if ((keyData & Keys.KeyCode) == Keys.Left)
             {
-                //Enterキー
+                // キャレットを左に一つずらす
                 movecaret(-1);
                 //本来の処理はさせない
                 return true;
             }
             else if ((keyData & Keys.KeyCode) == Keys.Right)
             {
-                //Enterキー
+                // キャレットを右に一つずらす
                 movecaret(1);
                 //本来の処理はさせない
                 return true;
@@ -473,6 +476,11 @@ namespace WindowsFormsApp1
         private void button_kakko2_Click(object sender, EventArgs e)
         {
             inputformula(')');// 入力処理を行う関数を呼ぶ
+        }
+
+        private void button_mod_Click(object sender, EventArgs e)
+        {
+            inputformula('%');
         }
     }
 }
