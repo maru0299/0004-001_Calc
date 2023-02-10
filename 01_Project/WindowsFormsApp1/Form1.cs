@@ -110,7 +110,7 @@ namespace WindowsFormsApp1
             caret.DrawLine(pen, point1, point2);    // キャレット表示
         }
 
-        // バックスペース処理
+        // 文字の削除処理
         private void remove_char(bool back)
         {
             if (back == true && textBox_formula.Text.Length != 0 && CaretIndex != 0)
