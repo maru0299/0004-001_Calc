@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
         int CaretIndex = 0;
         // 演算子の多重入力エラーを検出する際に正規表現に使うキーワード
         string keyword = "";
+        string pattern;
 
         public Form1()
         {
@@ -57,6 +58,7 @@ namespace WindowsFormsApp1
             {
                 keyword = keyword +"\\"+ i.ToString();
             }
+            pattern = "[" + keyword + "][" + keyword + "]";
 
             // キャレットの描画
             drawcaret();
@@ -131,27 +133,28 @@ namespace WindowsFormsApp1
         }
 
         // 式計算
-        private async void calc()
+        private void calc()
         {
-            // エラー処理 式に何も入力されていないときは何も処理せずreturn
-            if (textBox_formula.TextLength == 0)
-            {
-                textBox_result.ResetText();
-                return;
-            }
+            //// エラー処理 式に何も入力されていないときは何も処理せずreturn
+            //if (textBox_formula.TextLength == 0)
+            //{
+            //    textBox_result.ResetText();
+            //    return;
+            //}
 
             // 計算→解を表示
-            System.Data.DataTable dt = new System.Data.DataTable();
+
             try
             {
-                string result = dt.Compute(textBox_formula.Text, null).ToString();
-
-                string pattern = "[" + keyword + "][" + keyword + "]";
+                // 演算子の多重入力チェック
                 if (Regex.IsMatch(textBox_formula.Text, pattern))
                 {
-                    throw new Exception("多重入力です");
+                    throw new Exception("演算子の多重入力です");
                 }
 
+                // 計算
+                System.Data.DataTable dt = new System.Data.DataTable();
+                string result = dt.Compute(textBox_formula.Text, null).ToString();
                 textBox_result.Text = result.ToString();
             }
             catch   
