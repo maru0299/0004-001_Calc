@@ -1,7 +1,7 @@
-@echo off
+﻿@rem 文字コード Shift-JIS to UTF-8 変更
+chcp 65001
 
-@rem 文字コード Shift-JIS to UTF-8 変更
-@chcp 65001
+@echo off
 
 set /p comment="comment："
 git add .
