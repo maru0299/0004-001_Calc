@@ -3,8 +3,8 @@ chcp 65001
 
 @echo off
 
-set /p comment="comment："
+set /p comment="Commit Comment："
 git add .
-git commit . -m %comment%
+git commit . -m "%comment%"
 pause
 exit /b 0

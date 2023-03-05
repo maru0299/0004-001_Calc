@@ -3,9 +3,8 @@ chcp 65001
 
 @echo off
 
-@rem set /p comment="comment："
+set /p comment="Commit Comment："
 git add .
-@rem git commit . -m %comment%
-git commit . -m "batch commit push"
+git commit . -m "%comment%"
 git push -u origin main
 pause
