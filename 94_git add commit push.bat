@@ -2,9 +2,12 @@
 chcp 65001
 
 @echo off
-
 set /p comment="Commit Comment："
+
+@echo on
 git add .
 git commit . -m "%comment%"
 git push -u origin main
+
+@echo off
 pause
